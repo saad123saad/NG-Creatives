@@ -306,18 +306,40 @@
       border-color: #FBBF24;
     }
 
+    /* Updated video-placeholder with image + play icon */
     .video-placeholder {
       width: 100%;
       height: 180px;
-      background: #0f1419;
       border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FBBF24;
-      font-size: 3rem;
+      overflow: hidden;
       margin-bottom: 1.2rem;
       cursor: pointer;
+      position: relative;
+    }
+
+    .video-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-placeholder i {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      color: rgba(251, 191, 36, 0.9);
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      padding: 0.2rem;
+      transition: 0.2s;
+    }
+
+    .video-placeholder:hover i {
+      color: #FBBF24;
+      background: rgba(0, 0, 0, 0.7);
     }
 
     .screenshot-grid {
@@ -341,7 +363,7 @@
       object-fit: cover;
       display: block;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform 7.5s;
     }
 
     .screenshot img:hover {
@@ -399,7 +421,6 @@
     }
 
     /* ---------- CV SECTION ---------- */
-   /* ---------- CV SECTION ---------- */
     .cv-content {
       display: flex;
       align-items: center;
@@ -424,19 +445,19 @@
     }
 
     .cv-image {
-  flex: 0 0 200px; 
-  border-radius: 20px;
-  overflow: hidden;
-  border: 2px solid #FBBF24;
-  cursor: pointer;
-  height: fit-content; /* Container sirf image jitni height lega */
-}
+      flex: 0 0 200px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid #FBBF24;
+      cursor: pointer;
+      height: fit-content;
+    }
 
-.cv-image img {
-  width: 100%;
-  height: auto;        /* Image apni natural ratio barkarar rakhegi */
-  display: block;
-}
+    .cv-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
     /* ---------- CONTACT SECTION ---------- */
     .contact-grid {
@@ -529,7 +550,7 @@
       color: #FBBF24;
     }
 
-    /* ---------- MODAL STYLES (added) ---------- */
+    /* ---------- MODAL STYLES ---------- */
     .modal {
       display: none;
       position: fixed;
@@ -640,7 +661,7 @@
       cursor: pointer;
     }
 
-    /* ---------- RESPONSIVE (unchanged) ---------- */
+    /* ---------- RESPONSIVE ---------- */
     @media screen and (max-width: 992px) {
       .services-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -766,7 +787,7 @@
     <ul class="nav-links" id="nav-menu">
       <li><a href="#hero">Home</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#portfolio">Project Gallery</a></li>
       <li><a href="#cv">CV</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -790,7 +811,7 @@
         </p>
         <a href="#contact" class="btn">Work with me</a>
       </div>
-      <!-- Right column: profile image (replace src with your photo) -->
+      <!-- Right column: profile image -->
       <div class="hero-image-col">
         <img 
           src="saad 1.jpeg" 
@@ -835,6 +856,8 @@
   <!-- ========== PORTFOLIO CAROUSEL ========== -->
   <section id="portfolio" class="fade-section container">
     <h2>Project Gallery</h2>
+    <br>
+    <h4>Click on Project for full view</h4>
     <!-- Carousel controls -->
     <div class="carousel-buttons">
       <div class="carousel-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></div>
@@ -845,13 +868,14 @@
       <div class="portfolio-carousel" id="carouselTrack">
         <!-- Project 1 -->
         <div class="project-card" data-project="1">
-          <div class="video-placeholder" data-video="watch.mp4">
+          <div class="video-placeholder" data-video="uk.mp4">
+            <img src="ukthumb.png" alt="video thumbnail">
             <i class="fas fa-play-circle"></i>
           </div>
           <div class="screenshot-grid">
-            <div class="screenshot"><img src="watch.png" alt="screenshot" data-full="watch.png"></div>
-            <div class="screenshot"><img src="project1ss2.png" alt="screenshot" data-full="project1ss2.png"></div>
-            <div class="screenshot"><img src="project1ss3.png" alt="screenshot" data-full="project1ss3.png"></div>
+            <div class="screenshot"><img src="login.png" alt="screenshot" data-full="login.png"></div>
+            <div class="screenshot"><img src="sale.png" alt="screenshot" data-full="sale.png"></div>
+            <div class="screenshot"><img src="report.png" alt="screenshot" data-full="report.png"></div>
           </div>
           <h3 class="project-title">UK Printer App</h3>
           <p class="project-desc">Complete Mobile Application for UK Printer & Computer Bahawalpur with 15+ screens.</p>
@@ -859,13 +883,14 @@
         </div>
         <!-- Project 2 -->
         <div class="project-card" data-project="2">
-          <div class="video-placeholder" data-video="project2vid.mp4">
+          <div class="video-placeholder" data-video="h1.mp4">
+            <img src="hthumb.png" alt="video thumbnail">
             <i class="fas fa-play-circle"></i>
           </div>
           <div class="screenshot-grid">
             <div class="screenshot"><img src="hstore.png" alt="screenshot" data-full="hstore.png"></div>
-            <div class="screenshot"><img src="project2ss2.png" alt="screenshot" data-full="project2ss2.png"></div>
-            <div class="screenshot"><img src="project2ss3.png" alt="screenshot" data-full="project2ss3.png"></div>
+            <div class="screenshot"><img src="hweb.png" alt="screenshot" data-full="hweb.png"></div>
+            <div class="screenshot"><img src="hpro.png" alt="screenshot" data-full="hpro.png"></div>
           </div>
           <h3 class="project-title">HStores Website UI UX</h3>
           <p class="project-desc">Visual identity, packaging, and complete UI UX of a Website.</p>
@@ -873,7 +898,8 @@
         </div>
         <!-- Project 3 -->
         <div class="project-card" data-project="3">
-          <div class="video-placeholder" data-video="project3vid.mp4">
+          <div class="video-placeholder" data-video="z.mp4">
+            <img src="zthumb.png" alt="video thumbnail">
             <i class="fas fa-play-circle"></i>
           </div>
           <div class="screenshot-grid">
@@ -888,6 +914,7 @@
         <!-- Project 4 -->
         <div class="project-card" data-project="4">
           <div class="video-placeholder" data-video="ad.mp4">
+            <img src="post.png" alt="video thumbnail">
             <i class="fas fa-play-circle"></i>
           </div>
           <div class="screenshot-grid">
@@ -925,10 +952,6 @@
     </div>
   </section>
 <br>
-<picture>
-  <source media="(min-width: )" srcset="">
-  <img src="" alt="">
-</picture>
   <!-- ========== CONTACT SECTION ========== -->
   <section id="contact" class="fade-section container">
     <h2>Contact</h2>
@@ -959,18 +982,16 @@
             <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
             <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-
           </div>
         </div>
       </div>
-      <!-- Right: short note (optional) -->
+      <!-- Right: short note -->
       <div class="contact-form" style="display: flex; flex-direction: column; justify-content: center;">
         <i class="fas fa-comment-dots" style="font-size: 3rem; color: #FBBF24; margin-bottom: 1rem;"></i>
         <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Want to scale your business?</h3>
         <h4>Let’s build something great together.</h4>
         <br>
-        <p style="color: #C5C6C7;">
-        We Build, You Grow.</p>
+        <p style="color: #C5C6C7;">We Build, You Grow.</p>
       </div>
     </div>
   </section>
@@ -986,7 +1007,7 @@
     <div class="footer-links">
       <a href="#hero">Home</a>
       <a href="#services">Services</a>
-      <a href="#portfolio">Portfolio</a>
+      <a href="#project">Project Gallery</a>
       <a href="#cv">CV</a>
       <a href="#contact">Contact</a>
     </div>
@@ -1238,8 +1259,11 @@
 <!-- 
   🔁 REPLACE INSTRUCTIONS:
   - Hero image: src="saad 1.jpeg" → your actual photo.
-  - Portfolio: all projectXss.png, projectXvid.mp4 → your actual file paths.
-  - CV: src="cv4.png" → your CV image file.
+  - Portfolio: 
+      * Thumbnail images: thumb-uk.jpg, thumb-hstores.jpg, thumb-zelva.jpg, thumb-ad.jpg → replace with your own.
+      * Screenshots: login.png, sale.png, report.png, hstore.png, hweb.png, hpro.png, zelva.png, schedule.png, doctors.png, ad.png, ad2.png, ad3.png → replace with your actual files.
+      * Videos: uk.mp4, project2vid.mp4, project3vid.mp4, ad.mp4 → replace with your video files.
+  - CV: src="cv 4.png" → your CV image.
   - Social links: replace # with your URLs.
   - Email & WhatsApp: update if needed.
 -->
