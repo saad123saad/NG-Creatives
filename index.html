@@ -27,7 +27,40 @@
       line-height: 1.6;
     }
 
-    /* ---------- COLOR & UTILITY CLASSES ---------- */
+    /* ---------- TICKER (TOP MARQUEE) ---------- */
+    .ticker-wrap {
+      width: 100%;
+      background: #1F2833;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #FBBF24;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .ticker {
+      display: inline-block;
+      animation: ticker 20s linear infinite;
+    }
+
+    .ticker-item {
+      display: inline-block;
+      padding: 0 2rem;
+      color: #FBBF24;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .ticker-item i {
+      margin-right: 0.5rem;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ---------- CONTAINER & SECTIONS ---------- */
     .container {
       max-width: 1280px;
       margin: 0 auto;
@@ -39,7 +72,6 @@
       position: relative;
     }
 
-    /* fade-in on scroll */
     .fade-section {
       opacity: 0;
       transform: translateY(30px);
@@ -90,6 +122,25 @@
       box-shadow: 0 10px 20px -8px rgba(251, 191, 36, 0.3);
     }
 
+    .btn-small {
+      display: inline-block;
+      background: transparent;
+      border: 2px solid #FBBF24;
+      color: #FBBF24;
+      padding: 0.4rem 1.2rem;
+      font-weight: 600;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .btn-small:hover {
+      background: #FBBF24;
+      color: #0B0C10;
+      box-shadow: 0 10px 20px -8px rgba(251, 191, 36, 0.3);
+    }
+
     /* ---------- STICKY HEADER ---------- */
     header {
       position: sticky;
@@ -120,7 +171,6 @@
       color: #FBBF24;
     }
 
-    /* desktop navigation */
     .nav-links {
       display: flex;
       gap: 2.5rem;
@@ -144,7 +194,6 @@
       color: #FBBF24;
     }
 
-    /* mobile menu toggle (hidden on desktop) */
     .menu-toggle {
       display: none;
       font-size: 1.8rem;
@@ -152,7 +201,7 @@
       cursor: pointer;
     }
 
-    /* ---------- HERO SECTION (TWO COLUMNS) ---------- */
+    /* ---------- HERO ---------- */
     .hero {
       min-height: 90vh;
       display: flex;
@@ -222,7 +271,7 @@
       font-size: 1.2rem;
     }
 
-    /* ---------- SERVICES CARDS ---------- */
+    /* ---------- SERVICES ---------- */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -260,7 +309,7 @@
       font-size: 0.95rem;
     }
 
-    /* ---------- CV SECTION ---------- */
+    /* ---------- CV ---------- */
     .cv-content {
       display: flex;
       align-items: center;
@@ -300,9 +349,36 @@
     }
 
     /* ---------- PORTFOLIO CAROUSEL ---------- */
+    .portfolio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .portfolio-header h2 {
+      margin-bottom: 0;
+    }
+
+    .portfolio-header .view-plans-link {
+      color: #FBBF24;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border-bottom: 2px solid #FBBF24;
+      padding-bottom: 2px;
+      transition: 0.2s;
+    }
+
+    .portfolio-header .view-plans-link:hover {
+      color: white;
+      border-color: white;
+    }
+
     .carousel-container {
       position: relative;
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
 
     .portfolio-carousel {
@@ -401,7 +477,7 @@
       object-fit: cover;
       display: block;
       cursor: pointer;
-      transition: transform 7.5s;
+      transition: transform 0.3s;
     }
 
     .screenshot img:hover {
@@ -456,6 +532,123 @@
       background: #FBBF24;
       color: #0B0C10;
       border-color: #FBBF24;
+    }
+
+    /* ---------- REVIEWS ---------- */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .review-card {
+      background: #1F2833;
+      border-radius: 24px;
+      padding: 1.5rem;
+      border: 1px solid #2C3E50;
+      transition: 0.3s;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      border-color: #FBBF24;
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .review-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #0B0C10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #FBBF24;
+      border: 2px solid #FBBF24;
+    }
+
+    .review-info h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .review-info p {
+      color: #FBBF24;
+      font-size: 0.85rem;
+    }
+
+    .review-text {
+      color: #C5C6C7;
+      font-size: 0.95rem;
+      font-style: italic;
+      margin: 1rem 0;
+    }
+
+    .review-rating {
+      color: #FBBF24;
+    }
+
+    /* ---------- TOP PROJECTS ---------- */
+    .top-projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .top-project-card {
+      background: #1F2833;
+      border-radius: 24px;
+      padding: 2rem;
+      border: 1px solid #2C3E50;
+      transition: 0.3s;
+    }
+
+    .top-project-card:hover {
+      transform: translateY(-5px);
+      border-color: #FBBF24;
+    }
+
+    .top-project-icon {
+      font-size: 2.5rem;
+      color: #FBBF24;
+      margin-bottom: 1rem;
+    }
+
+    .top-project-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #FBBF24;
+    }
+
+    .top-project-card h4 {
+      font-size: 1.1rem;
+      margin: 1rem 0 0.5rem;
+      color: #EDEDED;
+    }
+
+    .top-project-card p {
+      color: #C5C6C7;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .top-project-tag {
+      display: inline-block;
+      background: #0B0C10;
+      color: #FBBF24;
+      padding: 0.2rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      border: 1px solid #FBBF24;
     }
 
     /* ---------- PRICING CARDS ---------- */
@@ -562,32 +755,175 @@
       margin: 1rem 0;
     }
 
-    /* Payment methods badges */
-    .payment-methods {
-      display: flex;
+    /* ---------- SIMPLE PAYMENT POPUP ---------- */
+    .payment-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.95);
+      backdrop-filter: blur(8px);
+      align-items: center;
       justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
     }
 
-    .payment-method {
-      background: #0B0C10;
-      padding: 0.5rem 1.5rem;
-      border-radius: 40px;
+    .payment-modal-content {
+      background: #1F2833;
+      border-radius: 32px;
+      max-width: 900px;
+      width: 90%;
+      padding: 2rem;
       border: 1px solid #FBBF24;
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .payment-close {
+      position: absolute;
+      top: 15px;
+      right: 25px;
       color: #FBBF24;
-      font-weight: 600;
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .payment-close:hover {
+      color: white;
+    }
+
+    .payment-left, .payment-right {
+      flex: 1 1 300px;
+    }
+
+    .payment-left {
+      border-right: 1px solid #2C3E50;
+      padding-right: 2rem;
+    }
+
+    .payment-left h3 {
+      color: #FBBF24;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    .account-detail {
+      background: #0B0C10;
+      border-radius: 16px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #2C3E50;
+    }
+
+    .account-detail p {
+      margin: 0.5rem 0;
+      color: #C5C6C7;
+    }
+
+    .account-detail i {
+      color: #FBBF24;
+      width: 25px;
+    }
+
+    .payment-right h3 {
+      color: #FBBF24;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    .guidance-list {
+      list-style: none;
+    }
+
+    .guidance-list li {
+      margin: 1rem 0;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 1rem;
+      color: #C5C6C7;
     }
 
-    .payment-method i {
+    .guidance-list li i {
+      color: #FBBF24;
       font-size: 1.5rem;
+      width: 30px;
     }
 
-    /* ---------- CONTACT FORM ---------- */
+    .wa-link {
+      display: inline-block;
+      margin-top: 2rem;
+      background: #25D366;
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .wa-link:hover {
+      background: #128C7E;
+    }
+
+    /* ---------- FAQ ---------- */
+    .faq-container {
+      max-width: 800px;
+      margin: 2rem auto 0;
+    }
+
+    .faq-item {
+      background: #1F2833;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      border: 1px solid #2C3E50;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .faq-question:hover {
+      background: rgba(251, 191, 36, 0.1);
+    }
+
+    .faq-question i {
+      color: #FBBF24;
+      transition: transform 0.3s;
+    }
+
+    .faq-question.active i {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      padding: 0 1.5rem;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      color: #C5C6C7;
+      border-top: 0px solid #2C3E50;
+    }
+
+    .faq-answer.show {
+      max-height: 200px;
+      padding: 1.2rem 1.5rem;
+      border-top-width: 1px;
+    }
+
+    /* ---------- CONTACT ---------- */
     .contact-form form {
       display: flex;
       flex-direction: column;
@@ -614,7 +950,7 @@
     }
 
     .form-group textarea {
-      min-height: 120px;
+      min-height: 100px;
       resize: vertical;
     }
 
@@ -634,11 +970,11 @@
       background: #e0a81f;
     }
 
-    /* ---------- FLOATING WHATSAPP BUTTON ---------- */
+    /* ---------- FLOATING WHATSAPP ---------- */
     .whatsapp-float {
       position: fixed;
-      bottom: 30px;
-      right: 30px;
+      bottom: 50px;
+      right: 20px;
       background: #25D366;
       color: white;
       width: 60px;
@@ -659,7 +995,7 @@
       transform: scale(1.1);
     }
 
-    /* ---------- CONTACT SECTION ---------- */
+    /* ---------- CONTACT INFO ---------- */
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -745,7 +1081,7 @@
       color: #FBBF24;
     }
 
-    /* ---------- MODAL STYLES ---------- */
+    /* ---------- MODAL (project) ---------- */
     .modal {
       display: none;
       position: fixed;
@@ -858,11 +1194,10 @@
 
     /* ---------- RESPONSIVE ---------- */
     @media screen and (max-width: 992px) {
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .pricing-grid {
+      .services-grid,
+      .pricing-grid,
+      .reviews-grid,
+      .top-projects-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -941,7 +1276,9 @@
         flex: 0 0 300px;
       }
 
-      .pricing-grid {
+      .pricing-grid,
+      .reviews-grid,
+      .top-projects-grid {
         grid-template-columns: 1fr;
       }
 
@@ -953,6 +1290,16 @@
 
       .footer-links a {
         margin: 0 0.8rem;
+      }
+
+      .payment-modal-content {
+        flex-direction: column;
+      }
+      .payment-left {
+        border-right: none;
+        border-bottom: 1px solid #2C3E50;
+        padding-right: 0;
+        padding-bottom: 1rem;
       }
     }
 
@@ -985,6 +1332,23 @@
 </head>
 <body>
 
+<!-- ========== TOP TICKER ========== -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item"><i class="fas fa-star"></i> Trusted By NG Creatives</span>
+    <span class="ticker-item"><i class="fas fa-phone-alt"></i> Contact now +92345-8740419</span>
+    <span class="ticker-item"><i class="fas fa-chart-line"></i> Grow your business with our expert's strategies</span>
+    <span class="ticker-item"><i class="fas fa-rocket"></i> NG Creatives! We build you Grow.</span>
+    <span class="ticker-item"><i class="fas fa-rocket"></i> Send Payment Screenshot & Confirm Order !!.</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item"><i class="fas fa-star"></i> Trusted By NG Creatives</span>
+    <span class="ticker-item"><i class="fas fa-phone-alt"></i> Contact now +92345-8740419</span>
+    <span class="ticker-item"><i class="fas fa-chart-line"></i> Grow your business with our expert's strategies</span>
+    <span class="ticker-item"><i class="fas fa-rocket"></i> NG Creatives! We build you Grow.</span>
+    <span class="ticker-item"><i class="fas fa-rocket"></i> Send Payment Screenshot & Confirm Order !!.</span>
+  </div>
+</div>
+
 <!-- ========== FLOATING WHATSAPP BUTTON ========== -->
 <a href="https://wa.me/923458740419?text=Hi%20Saad%2C%20I%20want%20to%20work%20with%20you.%20Can%20you%20help%20me%20grow%20my%20business%3F" class="whatsapp-float" target="_blank">
   <i class="fab fa-whatsapp"></i>
@@ -1005,7 +1369,10 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#cv">CV</a></li>
       <li><a href="#portfolio">Project Gallery</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#top-projects">Top Projects</a></li>
       <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -1098,7 +1465,10 @@
 
   <!-- ========== PORTFOLIO CAROUSEL ========== -->
   <section id="portfolio" class="fade-section container">
-    <h2>Project Gallery</h2>
+    <div class="portfolio-header">
+      <h2>Project Gallery</h2>
+      <a href="#pricing" class="view-plans-link">View Plans →</a>
+    </div>
     <br>
     <h4>Click on Project for full view</h4>
     <!-- Carousel controls -->
@@ -1171,7 +1541,129 @@
         </div>
       </div>
     </div>
-    <p style="color:#C5C6C7; margin-top: 1rem; text-align: right;"><i>← swipe or use buttons →</i></p>
+    <p style="color:#C5C6C7; margin-top: 1rem; text-align: right;"><i>← swipe to browse projects →</i></p>
+  </section>
+
+  <!-- ========== REVIEWS SECTION ========== -->
+  <section id="reviews" class="fade-section container">
+    <h2>Client Reviews</h2>
+    <div class="reviews-grid">
+      <!-- Review 1 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="review-info">
+            <h4>Ahmed Khan</h4>
+            <p>UK Printer App</p>
+          </div>
+        </div>
+        <div class="review-text">
+          "Saad did an amazing job on our mobile app. The UI is clean and user-friendly. Highly recommended!"
+        </div>
+        <div class="review-rating">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+      </div>
+      <!-- Review 2 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="review-info">
+            <h4>Sara Ali</h4>
+            <p>HStores Website</p>
+          </div>
+        </div>
+        <div class="review-text">
+          "Great experience working with Saad. He understood our brand and delivered beyond expectations."
+        </div>
+        <div class="review-rating">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+      </div>
+      <!-- Review 3 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="review-info">
+            <h4>Dr. Zafar</h4>
+            <p>Zelva App</p>
+          </div>
+        </div>
+        <div class="review-text">
+          "The app for our clinic has increased patient engagement. Excellent work and timely delivery."
+        </div>
+        <div class="review-rating">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+      </div>
+      <!-- Review 4 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="review-info">
+            <h4>Marketing Pro</h4>
+            <p>Ad Campaigns</p>
+          </div>
+        </div>
+        <div class="review-text">
+          "Saad's social media posts and branding helped us attract more customers. Highly skilled!"
+        </div>
+        <div class="review-rating">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TOP PROJECTS SECTION ========== -->
+  <section id="top-projects" class="fade-section container">
+    <h2>Top Projects</h2>
+    <div class="top-projects-grid">
+      <!-- Project 1 -->
+      <div class="top-project-card">
+        <div class="top-project-icon"><i class="fas fa-mobile-alt"></i></div>
+        <h3>UK Printer App</h3>
+        <div class="top-project-tag">Mobile App</div>
+        <h4>Problem:</h4>
+        <p>Client needed an inventory management system for their computer store.</p>
+        <h4>Solution:</h4>
+        <p>Built a cross-platform app with real-time stock tracking and sales reporting.</p>
+        <h4>Product:</h4>
+        <p>Flutter app with Firebase backend, 15+ screens, deployed on iOS & Android.</p>
+      </div>
+      <!-- Project 2 -->
+      <div class="top-project-card">
+        <div class="top-project-icon"><i class="fas fa-globe"></i></div>
+        <h3>HStores Website</h3>
+        <div class="top-project-tag">Web Design</div>
+        <h4>Problem:</h4>
+        <p>Existing website was outdated and not converting visitors.</p>
+        <h4>Solution:</h4>
+        <p>Redesigned UI/UX with modern aesthetics and clear CTAs.</p>
+        <h4>Product:</h4>
+        <p>Fully responsive website with 5 pages, custom illustrations, and fast loading.</p>
+      </div>
+      <!-- Project 3 -->
+      <div class="top-project-card">
+        <div class="top-project-icon"><i class="fas fa-clinic-medical"></i></div>
+        <h3>Zelva App</h3>
+        <div class="top-project-tag">UI/UX Design</div>
+        <h4>Problem:</h4>
+        <p>Doctors needed a platform to connect with patients.</p>
+        <h4>Solution:</h4>
+        <p>Developed an appointment booking app with real-time chat and notifications.</p>
+        <h4>Product:</h4>
+        <p>React Native app with Node.js backend, 20+ screens, integrated with WhatsApp API.</p>
+      </div>
+    </div>
   </section>
 
   <!-- ========== PRICING SECTION ========== -->
@@ -1184,43 +1676,50 @@
       <div class="pricing-card">
         <h3>Standard</h3>
         <div class="starting-from">Starting from</div>
-        <div class="price">$10 <span>/ project</span></div>
+        <div class="price">$20 <span>/ project</span></div>
         <ul>
           <li><i class="fas fa-check-circle"></i> Complete Brand Kit (Logo + Banner)</li>
           <li><i class="fas fa-check-circle"></i> 1 Social Media Post Design</li>
           <li><i class="fas fa-check-circle"></i> Basic UI/UX Wireframe</li>
+          <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Brand Identity </li>
+          <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> App Development</li>
           <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Web/App Development</li>
+          <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Support & Consultation</li>
           <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Advanced Prototyping</li>
         </ul>
-        <a href="#contact" class="btn">Select Standard</a>
+        <a href="#" class="btn select-plan" data-plan="Standard" data-price="10">Select Standard</a>
       </div>
       <!-- Intermediate Plan (featured) -->
       <div class="pricing-card featured">
         <h3>Intermediate</h3>
         <div class="starting-from">Starting from</div>
-        <div class="price">$15 <span>/ project</span></div>
+        <div class="price">$30 <span>/ project</span></div>
         <ul>
+          <li><i class="fas fa-check-circle"></i> All in Standard Plan</li>
           <li><i class="fas fa-check-circle"></i> Complete Brand Identity (Logo, Graphics, Banner)</li>
+          <li><i class="fas fa-check-circle"></i> 3 Video Ads</li>
           <li><i class="fas fa-check-circle"></i> 3 Premium Social Media Post Designs</li>
-          <li><i class="fas fa-check-circle"></i> Full UI/UX Design (up to 10 screens)</li>
+          <li><i class="fas fa-check-circle"></i> Intermediate UI/UX Design (up to 10 screens)</li>
           <li><i class="fas fa-check-circle"></i> Basic Website/App Development (3 pages)</li>
           <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Advanced Development</li>
         </ul>
-        <a href="#contact" class="btn">Select Intermediate</a>
+        <a href="#" class="btn select-plan" data-plan="Intermediate" data-price="15">Select Intermediate</a>
       </div>
       <!-- Premium Plan -->
       <div class="pricing-card">
         <h3>Premium</h3>
         <div class="starting-from">Starting from</div>
-        <div class="price">$25 <span>/ project</span></div>
+        <div class="price">$50 <span>/ project</span></div>
         <ul>
-          <li><i class="fas fa-check-circle"></i> Complete Brand Identity (10 revisions)</li>
-          <li><i class="fas fa-check-circle"></i> 5+ Social Media Post Designs</li>
+          <li><i class="fas fa-check-circle"></i> All in Intermediate Plan</li>
+          <li><i class="fas fa-check-circle"></i> Complete Brand Identity </li>
+          <li><i class="fas fa-check-circle"></i> 10+ Social Media Post Designs</li>
+          <li><i class="fas fa-check-circle"></i> 10 Video Ads</li>
           <li><i class="fas fa-check-circle"></i> Advanced UI/UX (25 screens)</li>
           <li><i class="fas fa-check-circle"></i> Full Custom Code Web/App Development</li>
           <li><i class="fas fa-check-circle"></i> Priority 24/7 Support & Consultation</li>
         </ul>
-        <a href="#contact" class="btn">Select Premium</a>
+        <a href="#" class="btn select-plan" data-plan="Premium" data-price="25">Select Premium</a>
       </div>
 
       <!-- CUSTOM PLAN with checkboxes -->
@@ -1243,7 +1742,7 @@
           </div>
           <div class="custom-option">
             <input type="checkbox" id="opt4" value="15" onchange="updateCustomTotal()">
-            <label for="opt4">UI/UX Design (per screen) (+$15)</label>
+            <label for="opt4">UI/UX Design (per screen) (+$10)</label>
           </div>
           <div class="custom-option">
             <input type="checkbox" id="opt5" value="30" onchange="updateCustomTotal()">
@@ -1254,28 +1753,70 @@
             <label for="opt6">Priority Consultation (+$25)</label>
           </div>
         </div>
-        <a href="#contact" class="btn" onclick="sendCustomPlan()">Request Custom</a>
+        <a href="#" class="btn" onclick="sendCustomPlan(); return false;">Request Custom</a>
       </div>
     </div>
 
-    <!-- Payment Methods Section -->
-    <div style="margin-top: 3rem; text-align: center;">
-      <h3 style="color: #FBBF24;">Accepted Payment Methods</h3>
-      <div class="payment-methods">
-        <div class="payment-method"><i class="fas fa-mobile-alt"></i> JazzCash</div>
-        <div class="payment-method"><i class="fas fa-mobile-alt"></i> EasyPaisa</div>
-        <div class="payment-method"><i class="fab fa-cc-visa"></i> Card (Visa/Master)</div>
+    <!-- Funnel Link: Chat with me -->
+    <div style="text-align: center; margin-top: 2rem;">
+      <p style="color: #C5C6C7;">Want some discussion? <a href="https://wa.me/923458740419?text=Hi%20Saad%2C%20I%20want%20to%20discuss%20my%20project%20requirements." target="_blank" style="color: #FBBF24; font-weight: 600; text-decoration: underline;">Chat with us</a></p>
+    </div>
+  </section>
+
+  <!-- ========== FAQ SECTION ========== -->
+  <section id="faq" class="fade-section container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+      <!-- FAQ 1 -->
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What services do you offer?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          I offer UI/UX design, web & app development, brand identity creation, and social media marketing services.
+        </div>
       </div>
-      <!-- 
-        🔹 PAYMENT INTEGRATION NOTES:
-        - For JazzCash / EasyPaisa: Use their official merchant APIs (JazzCash API, EasyPaisa API). 
-          You'll need to register as a merchant and get API credentials. Then create a backend endpoint 
-          to initiate payments and handle callbacks.
-        - For Card payments: Integrate Stripe or PayPal. Stripe is easier: add Stripe.js and create 
-          a PaymentIntent on your server. For a simple start, you can use buy buttons that redirect 
-          to a payment link.
-        - These badges are just visual; actual payment flow requires backend integration.
-      -->
+      <!-- FAQ 2 -->
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>How long does a typical project take?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Project timelines vary based on complexity. A simple branding project might take 3-5 days, while a full app can take 2-4 weeks.
+        </div>
+      </div>
+      <!-- FAQ 3 -->
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Do you offer revisions?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Yes, revisions are included in all plans. The number of revisions depends on the plan you choose.
+        </div>
+      </div>
+      <!-- FAQ 4 -->
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>What payment methods do you accept?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          I accept JazzCash, EasyPaisa, and Credit/Debit cards. All payments are processed securely.
+        </div>
+      </div>
+      <!-- FAQ 5 -->
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>Can I get a custom quote for my project?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Absolutely! Use the Custom Plan builder above or contact me directly for a personalized quote.
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1307,7 +1848,7 @@
             <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://wa.me/923458740419?text=Hi%20Saad%2C%20I%20want%20to%20work%20with%20you.%20Can%20you%20help%20me%20grow%20my%20business%3F" target="_blank"><i class="fab fa-whatsapp"></i></a>
             <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
           </div>
         </div>
@@ -1346,21 +1887,53 @@
 <!-- ========== FOOTER ========== -->
 <footer>
   <div class="container footer-content">
-    <div style="color: #C5C6C7;">
-      © 2026 NGCreatives – Designed & built by Saad Rasheed
-    </div>
     <div class="footer-links">
       <a href="#hero">Home</a>
       <a href="#services">Services</a>
       <a href="#cv">CV</a>
       <a href="#portfolio">Project Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#top-projects">Top Projects</a>
       <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div style="color: #C5C6C7;">
+      © 2026 NGCreatives – Designed & built by Saad Rasheed
     </div>
   </div>
 </footer>
 
-<!-- ========== MODALS ========== -->
+<!-- ========== SIMPLE PAYMENT POPUP ========== -->
+<div id="paymentModal" class="payment-modal">
+  <span class="payment-close" id="closePaymentModal">&times;</span>
+  <div class="payment-modal-content">
+    <div class="payment-left">
+      <h3>Send Payment To</h3>
+      <div class="account-detail">
+        <p><i class="fas fa-mobile-alt"></i> <strong>JazzCash:</strong> 0345-8740419</p>
+        <p><i class="fas fa-mobile-alt"></i> <strong>EasyPaisa:</strong> 0345-8740419</p>
+        <p><i class="fab fa-cc-visa"></i> <strong>Card:</strong> (upon request)</p>
+      </div>
+      <p style="color:#FBBF24; font-size:1.2rem; margin-top:1rem;">Amount: <span id="popupAmount">$10</span></p>
+      <p style="color:#EDEDED;">Plan: <span id="popupPlan">Standard</span></p>
+    </div>
+    <div class="payment-right">
+      <h3>How to Proceed</h3>
+      <ul class="guidance-list">
+        <li><i class="fas fa-check-circle"></i> Send the exact amount to any of the accounts on the left.</li>
+        <li><i class="fas fa-check-circle"></i> Take a screenshot of the transaction or save the receipt.</li>
+        <li><i class="fas fa-check-circle"></i> Send the screenshot on WhatsApp using the button below.</li>
+        <li><i class="fas fa-check-circle"></i> Our team will contact you within 24 hours to start your project.</li>
+      </ul>
+      <a href="#" id="paymentWALink" class="wa-link" target="_blank"><i class="fab fa-whatsapp"></i> Send Screenshot on WhatsApp</a>
+    </div>
+  </div>
+</div>
+
 <!-- Project detail modal -->
 <div id="projectModal" class="modal">
   <span class="modal-close" id="closeProjectModal">&times;</span>
@@ -1407,11 +1980,10 @@
       });
     });
 
-    // ---------- 3. CAROUSEL AUTO-SLIDE ----------
+    // ---------- 3. CAROUSEL (MANUAL ONLY) ----------
     const track = document.getElementById('carouselTrack');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    let autoSlideInterval;
 
     function scrollCarousel(direction) {
       const card = track.querySelector('.project-card');
@@ -1425,22 +1997,6 @@
       prevBtn.addEventListener('click', () => scrollCarousel('prev'));
       nextBtn.addEventListener('click', () => scrollCarousel('next'));
     }
-
-    function startAutoSlide() {
-      autoSlideInterval = setInterval(() => {
-        if (track) scrollCarousel('next');
-      }, 4000);
-    }
-    function stopAutoSlide() { clearInterval(autoSlideInterval); }
-    startAutoSlide();
-    track.addEventListener('mouseenter', stopAutoSlide);
-    track.addEventListener('mouseleave', startAutoSlide);
-    [prevBtn, nextBtn].forEach(btn => {
-      if (btn) {
-        btn.addEventListener('click', stopAutoSlide);
-        btn.addEventListener('click', () => { setTimeout(startAutoSlide, 5000); });
-      }
-    });
 
     // ---------- 4. ACTIVE NAV HIGHLIGHT ----------
     const sections = document.querySelectorAll('section[id]');
@@ -1461,7 +2017,7 @@
       });
     });
 
-    // ---------- 5. MODAL FUNCTIONALITY ----------
+    // ---------- 5. PROJECT MODAL ----------
     const projectModal = document.getElementById('projectModal');
     const closeProjectModal = document.getElementById('closeProjectModal');
     const modalTitle = document.getElementById('modalTitle');
@@ -1566,8 +2122,73 @@
       });
     }
 
+    // ---------- 6. FAQ ACCORDION ----------
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const icon = question.querySelector('i');
+        answer.classList.toggle('show');
+        question.classList.toggle('active');
+        // close others (optional)
+        faqQuestions.forEach(q => {
+          if (q !== question) {
+            q.classList.remove('active');
+            q.nextElementSibling.classList.remove('show');
+          }
+        });
+      });
+    });
+
+    // ---------- 7. SIMPLE PAYMENT POPUP ----------
+    const paymentModal = document.getElementById('paymentModal');
+    const closePaymentModal = document.getElementById('closePaymentModal');
+    const popupPlan = document.getElementById('popupPlan');
+    const popupAmount = document.getElementById('popupAmount');
+    const paymentWALink = document.getElementById('paymentWALink');
+
+    const selectPlanButtons = document.querySelectorAll('.select-plan');
+    selectPlanButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const plan = btn.getAttribute('data-plan');
+        const price = btn.getAttribute('data-price');
+        popupPlan.innerText = plan;
+        popupAmount.innerText = '$' + price;
+        // Update WhatsApp link with pre-filled message
+        paymentWALink.href = 'https://wa.me/923458740419?text=I%20have%20sent%20payment%20for%20' + encodeURIComponent(plan + ' plan ($' + price + ')') + '.%20Please%20verify.';
+        paymentModal.style.display = 'flex';
+      });
+    });
+
+    // Custom plan button (already handled by sendCustomPlan, but we also want to open payment modal)
+    const customBtn = document.querySelector('#customPlan .btn');
+    if (customBtn) {
+      customBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // For custom, we use the total calculated
+        let total = document.getElementById('customTotal').innerText;
+        popupPlan.innerText = 'Custom';
+        popupAmount.innerText = total;
+        paymentWALink.href = 'https://wa.me/923458740419?text=I%20have%20sent%20payment%20for%20custom%20plan%20(' + encodeURIComponent(total) + ').%20Please%20verify.';
+        paymentModal.style.display = 'flex';
+      });
+    }
+
+    closePaymentModal.addEventListener('click', () => {
+      paymentModal.style.display = 'none';
+    });
+
+    paymentModal.addEventListener('click', (e) => {
+      if (e.target === paymentModal) {
+        paymentModal.style.display = 'none';
+      }
+    });
+
+    // Close on ESC
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
+        if (paymentModal.style.display === 'flex') paymentModal.style.display = 'none';
         if (projectModal.style.display === 'flex') {
           projectModal.style.display = 'none';
           modalVideo.pause();
@@ -1587,7 +2208,7 @@
     if (document.getElementById('opt1').checked) total += 20;
     if (document.getElementById('opt2').checked) total += 50;
     if (document.getElementById('opt3').checked) total += 10;
-    if (document.getElementById('opt4').checked) total += 15;
+    if (document.getElementById('opt4').checked) total += 10;
     if (document.getElementById('opt5').checked) total += 30;
     if (document.getElementById('opt6').checked) total += 25;
     document.getElementById('customTotal').innerText = '$' + total;
@@ -1604,7 +2225,6 @@
     if (document.getElementById('opt6').checked) selected.push('Priority Consultation');
     let total = document.getElementById('customTotal').innerText;
     let message = "Hi Saad, I'm interested in a custom plan with: " + selected.join(', ') + ". Total estimated: " + total + ". Can we discuss?";
-    // Open WhatsApp with the message
     window.open('https://wa.me/923458740419?text=' + encodeURIComponent(message), '_blank');
   }
 </script>
@@ -1619,8 +2239,7 @@
   - CV: src="cv 4.png" → your CV image.
   - Social links: replace # with your URLs.
   - Email & WhatsApp: update if needed.
-  - Form: already sends to saadrasheedpersonal@gmail.com via FormSubmit.
-  - Payment methods: comments added above payment badges; actual integration requires backend work.
+  - Payment popup: account numbers already set to your WhatsApp number.
 -->
 </body>
 </html>
