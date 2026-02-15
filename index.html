@@ -306,7 +306,6 @@
       border-color: #FBBF24;
     }
 
-    /* Updated video-placeholder with image + play icon */
     .video-placeholder {
       width: 100%;
       height: 180px;
@@ -420,6 +419,146 @@
       border-color: #FBBF24;
     }
 
+    /* ---------- PRICING CARDS (NEW) ---------- */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .pricing-card {
+      background: #1F2833;
+      border-radius: 24px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid #2C3E50;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5);
+      border-color: #FBBF24;
+    }
+
+    .pricing-card.featured {
+      border: 2px solid #FBBF24;
+      transform: scale(1.02);
+    }
+
+    .pricing-card .price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #FBBF24;
+      margin: 1rem 0;
+    }
+
+    .pricing-card .price span {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #C5C6C7;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      margin: 1.5rem 0;
+      text-align: left;
+    }
+
+    .pricing-card li {
+      margin: 0.8rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #C5C6C7;
+    }
+
+    .pricing-card li i {
+      color: #FBBF24;
+      font-size: 1.1rem;
+      width: 20px;
+    }
+
+    .pricing-card .btn {
+      margin-top: 1rem;
+      width: 100%;
+    }
+
+    /* ---------- CONTACT FORM (NEW) ---------- */
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: #0B0C10;
+      border: 1px solid #2C3E50;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: #EDEDED;
+      transition: 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #FBBF24;
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      background: #FBBF24;
+      color: #0B0C10;
+      border: none;
+      padding: 0.8rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .contact-form button:hover {
+      background: #e0a81f;
+    }
+
+    /* ---------- FLOATING WHATSAPP BUTTON (NEW) ---------- */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      z-index: 999;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+      background: #128C7E;
+      transform: scale(1.1);
+    }
+
     /* ---------- CV SECTION ---------- */
     .cv-content {
       display: flex;
@@ -459,7 +598,7 @@
       display: block;
     }
 
-    /* ---------- CONTACT SECTION ---------- */
+    /* ---------- CONTACT SECTION (existing, but form replaced) ---------- */
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -506,6 +645,7 @@
       display: flex;
       gap: 1.8rem;
       margin-top: 2rem;
+      flex-wrap: wrap;
     }
 
     .social-links a {
@@ -517,12 +657,6 @@
     .social-links a:hover {
       color: #FBBF24;
       transform: translateY(-5px);
-    }
-
-    .contact-form {
-      background: #1F2833;
-      border-radius: 24px;
-      padding: 2.5rem;
     }
 
     /* ---------- FOOTER ---------- */
@@ -631,7 +765,7 @@
       font-size: 1.1rem;
     }
 
-    /* image lightbox (simple) */
+    /* image lightbox */
     .image-lightbox {
       display: none;
       position: fixed;
@@ -664,6 +798,10 @@
     /* ---------- RESPONSIVE ---------- */
     @media screen and (max-width: 992px) {
       .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pricing-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -742,6 +880,10 @@
         flex: 0 0 300px;
       }
 
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
       .footer-content {
         flex-direction: column;
         gap: 1rem;
@@ -769,10 +911,23 @@
       .hero-image-col img {
         max-width: 240px;
       }
+
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+        bottom: 20px;
+        right: 20px;
+      }
     }
   </style>
 </head>
 <body>
+
+<!-- ========== FLOATING WHATSAPP BUTTON ========== -->
+<a href="https://wa.me/923458740419?text=Hi%20Saad%2C%20I%20want%20to%20work%20with%20you.%20Can%20you%20help%20me%20grow%20my%20business%3F" class="whatsapp-float" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
 
 <!-- ========== STICKY HEADER ========== -->
 <header>
@@ -788,6 +943,7 @@
       <li><a href="#hero">Home</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#portfolio">Project Gallery</a></li>
+      <li><a href="#pricing">Pricing</a></li>
       <li><a href="#cv">CV</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -931,6 +1087,52 @@
     <p style="color:#C5C6C7; margin-top: 1rem; text-align: right;"><i>← swipe or use buttons →</i></p>
   </section>
 
+  <!-- ========== PRICING SECTION (NEW) ========== -->
+  <section id="pricing" class="fade-section container">
+    <h2>Pricing Plans</h2>
+    <div class="pricing-grid">
+      <!-- Basic Plan -->
+      <div class="pricing-card">
+        <h3>Basic</h3>
+        <div class="price">$5 <span>/ project</span></div>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Complete Brand Kit (Logo + Banner)</li>
+          <li><i class="fas fa-check-circle"></i> 1 Social Media Post Design</li>
+          <li><i class="fas fa-check-circle"></i> Basic UI/UX Wireframe</li>
+          <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Web/App Development</li>
+          <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Advanced Prototyping</li>
+        </ul>
+        <a href="#contact" class="btn">Choose Basic</a>
+      </div>
+      <!-- Medium Plan (featured) -->
+      <div class="pricing-card featured">
+        <h3>Medium</h3>
+        <div class="price">$10 <span>/ project</span></div>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Complete Brand Identity (Logo, Graphics, Banner)</li>
+          <li><i class="fas fa-check-circle"></i> 3 Social Media Post Designs</li>
+          <li><i class="fas fa-check-circle"></i> Full UI/UX Design (up to 10 screens)</li>
+          <li><i class="fas fa-check-circle"></i> Basic Website/App Development (1 page)</li>
+          <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Advanced Development</li>
+        </ul>
+        <a href="#contact" class="btn">Choose Medium</a>
+      </div>
+      <!-- Professional Plan -->
+      <div class="pricing-card">
+        <h3>Professional</h3>
+        <div class="price">$15 <span>/ project</span></div>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Complete Brand Identity (Unlimited revisions)</li>
+          <li><i class="fas fa-check-circle"></i> 5+ Social Media Post Designs</li>
+          <li><i class="fas fa-check-circle"></i> Advanced UI/UX (unlimited screens)</li>
+          <li><i class="fas fa-check-circle"></i> Full Web/App Development (up to 5 pages)</li>
+          <li><i class="fas fa-check-circle"></i> Priority Support & Consultation</li>
+        </ul>
+        <a href="#contact" class="btn">Choose Professional</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== CV / ABOUT SECTION ========== -->
   <section id="cv" class="fade-section container">
     <h2>About & CV</h2>
@@ -985,13 +1187,31 @@
           </div>
         </div>
       </div>
-      <!-- Right: short note -->
-      <div class="contact-form" style="display: flex; flex-direction: column; justify-content: center;">
-        <i class="fas fa-comment-dots" style="font-size: 3rem; color: #FBBF24; margin-bottom: 1rem;"></i>
-        <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">Want to scale your business?</h3>
-        <h4>Let’s build something great together.</h4>
-        <br>
-        <p style="color: #C5C6C7;">We Build, You Grow.</p>
+      <!-- Right: contact form (NEW) -->
+      <div class="contact-form">
+        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Send a Message</h3>
+        <form action="https://formsubmit.co/saadrasheedpersonal@gmail.com" method="POST">
+          <!-- honeypot spam protection -->
+          <input type="text" name="_honey" style="display:none">
+          <!-- disable captcha (optional) -->
+          <input type="hidden" name="_captcha" value="false">
+          <!-- redirect to same page after submission -->
+          <input type="hidden" name="_next" value="">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="whatsapp" placeholder="WhatsApp Number (with country code)" required>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Your Message / Project Details" required></textarea>
+          </div>
+          <button type="submit">Send Message</button>
+        </form>
+        <p style="color:#C5C6C7; font-size:0.9rem; margin-top:1rem;">I'll get back to you within 24h.</p>
       </div>
     </div>
   </section>
@@ -1007,7 +1227,8 @@
     <div class="footer-links">
       <a href="#hero">Home</a>
       <a href="#services">Services</a>
-      <a href="#project">Project Gallery</a>
+      <a href="#portfolio">Project Gallery</a>
+      <a href="#pricing">Pricing</a>
       <a href="#cv">CV</a>
       <a href="#contact">Contact</a>
     </div>
@@ -1116,33 +1337,26 @@
     });
 
     // ---------- 5. MODAL FUNCTIONALITY ----------
-    // Project modal elements
     const projectModal = document.getElementById('projectModal');
     const closeProjectModal = document.getElementById('closeProjectModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalDesc = document.getElementById('modalDesc');
     const modalVideo = document.getElementById('modalVideo');
     const modalScreenshots = document.getElementById('modalScreenshots');
-
-    // Image lightbox elements
     const lightbox = document.getElementById('imageLightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const closeLightbox = document.getElementById('closeLightbox');
 
-    // Open project modal
     function openProjectModal(projectCard) {
-      // Get data from the card
       const title = projectCard.querySelector('.project-title').innerText;
       const desc = projectCard.querySelector('.project-desc').innerText;
       const videoSrc = projectCard.querySelector('.video-placeholder').getAttribute('data-video');
       const screenshotImgs = projectCard.querySelectorAll('.screenshot img');
       
-      // Set modal content
       modalTitle.innerText = title;
       modalDesc.innerText = desc;
       modalVideo.src = videoSrc;
       
-      // Clear and populate screenshots
       modalScreenshots.innerHTML = '';
       screenshotImgs.forEach(img => {
         const fullSrc = img.getAttribute('data-full') || img.src;
@@ -1155,17 +1369,14 @@
         modalScreenshots.appendChild(newImg);
       });
 
-      // Show modal
       projectModal.style.display = 'flex';
     }
 
-    // Open lightbox for any image
     function openLightbox(src) {
       lightboxImg.src = src;
       lightbox.style.display = 'flex';
     }
 
-    // Close modals
     closeProjectModal.addEventListener('click', () => {
       projectModal.style.display = 'none';
       modalVideo.pause();
@@ -1176,7 +1387,6 @@
       lightboxImg.src = '';
     });
 
-    // Close modals when clicking outside content
     projectModal.addEventListener('click', (e) => {
       if (e.target === projectModal) {
         projectModal.style.display = 'none';
@@ -1191,19 +1401,15 @@
       }
     });
 
-    // Attach events to project cards
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
-      // Click on card (except links) opens modal
       card.addEventListener('click', (e) => {
-        // If click is on a link or image, let those handlers handle it
         if (e.target.closest('.project-link') || e.target.closest('.screenshot img')) {
           return;
         }
         openProjectModal(card);
       });
 
-      // "View project" link opens modal
       const viewLink = card.querySelector('.project-link');
       viewLink.addEventListener('click', (e) => {
         e.preventDefault();
@@ -1211,16 +1417,13 @@
         openProjectModal(card);
       });
 
-      // Video placeholder click opens modal (and maybe auto-play?)
       const videoPlaceholder = card.querySelector('.video-placeholder');
       videoPlaceholder.addEventListener('click', (e) => {
         e.stopPropagation();
         openProjectModal(card);
-        // Optional: auto-play video after a short delay
         setTimeout(() => { modalVideo.play(); }, 300);
       });
 
-      // Screenshot clicks open lightbox
       const screenshots = card.querySelectorAll('.screenshot img');
       screenshots.forEach(img => {
         img.addEventListener('click', (e) => {
@@ -1231,7 +1434,6 @@
       });
     });
 
-    // CV image click to open lightbox
     const cvImage = document.querySelector('.cv-image img');
     if (cvImage) {
       cvImage.addEventListener('click', () => {
@@ -1239,7 +1441,6 @@
       });
     }
 
-    // Close modal on ESC key
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         if (projectModal.style.display === 'flex') {
@@ -1260,12 +1461,13 @@
   🔁 REPLACE INSTRUCTIONS:
   - Hero image: src="saad 1.jpeg" → your actual photo.
   - Portfolio: 
-      * Thumbnail images: thumb-uk.jpg, thumb-hstores.jpg, thumb-zelva.jpg, thumb-ad.jpg → replace with your own.
+      * Thumbnail images: ukthumb.png, hthumb.png, zthumb.png, post.png → replace with your own.
       * Screenshots: login.png, sale.png, report.png, hstore.png, hweb.png, hpro.png, zelva.png, schedule.png, doctors.png, ad.png, ad2.png, ad3.png → replace with your actual files.
-      * Videos: uk.mp4, project2vid.mp4, project3vid.mp4, ad.mp4 → replace with your video files.
+      * Videos: uk.mp4, h1.mp4, z.mp4, ad.mp4 → replace with your video files.
   - CV: src="cv 4.png" → your CV image.
   - Social links: replace # with your URLs.
   - Email & WhatsApp: update if needed.
+  - Form: The form already sends to saadrasheedpersonal@gmail.com via FormSubmit. No extra setup needed.
 -->
 </body>
 </html>
