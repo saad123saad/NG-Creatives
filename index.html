@@ -260,6 +260,45 @@
       font-size: 0.95rem;
     }
 
+    /* ---------- CV SECTION ---------- */
+    .cv-content {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      background: #1F2833;
+      border-radius: 32px;
+      padding: 3rem;
+    }
+
+    .cv-text {
+      flex: 1;
+    }
+
+    .cv-text h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .cv-text p {
+      color: #C5C6C7;
+      margin-bottom: 1.5rem;
+    }
+
+    .cv-image {
+      flex: 0 0 200px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid #FBBF24;
+      cursor: pointer;
+      height: fit-content;
+    }
+
+    .cv-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
     /* ---------- PORTFOLIO CAROUSEL ---------- */
     .carousel-container {
       position: relative;
@@ -419,10 +458,10 @@
       border-color: #FBBF24;
     }
 
-    /* ---------- PRICING CARDS (NEW) ---------- */
+    /* ---------- PRICING CARDS ---------- */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
       margin-top: 2rem;
     }
@@ -462,6 +501,13 @@
       color: #C5C6C7;
     }
 
+    .pricing-card .starting-from {
+      font-size: 0.9rem;
+      color: #C5C6C7;
+      margin-top: -0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
     .pricing-card ul {
       list-style: none;
       margin: 1.5rem 0;
@@ -487,7 +533,61 @@
       width: 100%;
     }
 
-    /* ---------- CONTACT FORM (NEW) ---------- */
+    /* Custom plan checkboxes */
+    .custom-option {
+      text-align: left;
+      margin: 0.8rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #C5C6C7;
+    }
+
+    .custom-option input {
+      width: 18px;
+      height: 18px;
+      accent-color: #FBBF24;
+      cursor: pointer;
+    }
+
+    .custom-option label {
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .custom-total {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #FBBF24;
+      margin: 1rem 0;
+    }
+
+    /* Payment methods badges */
+    .payment-methods {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .payment-method {
+      background: #0B0C10;
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      border: 1px solid #FBBF24;
+      color: #FBBF24;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .payment-method i {
+      font-size: 1.5rem;
+    }
+
+    /* ---------- CONTACT FORM ---------- */
     .contact-form form {
       display: flex;
       flex-direction: column;
@@ -534,7 +634,7 @@
       background: #e0a81f;
     }
 
-    /* ---------- FLOATING WHATSAPP BUTTON (NEW) ---------- */
+    /* ---------- FLOATING WHATSAPP BUTTON ---------- */
     .whatsapp-float {
       position: fixed;
       bottom: 30px;
@@ -559,46 +659,7 @@
       transform: scale(1.1);
     }
 
-    /* ---------- CV SECTION ---------- */
-    .cv-content {
-      display: flex;
-      align-items: center;
-      gap: 4rem;
-      background: #1F2833;
-      border-radius: 32px;
-      padding: 3rem;
-    }
-
-    .cv-text {
-      flex: 1;
-    }
-
-    .cv-text h3 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .cv-text p {
-      color: #C5C6C7;
-      margin-bottom: 1.5rem;
-    }
-
-    .cv-image {
-      flex: 0 0 200px;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 2px solid #FBBF24;
-      cursor: pointer;
-      height: fit-content;
-    }
-
-    .cv-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* ---------- CONTACT SECTION (existing, but form replaced) ---------- */
+    /* ---------- CONTACT SECTION ---------- */
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -942,9 +1003,9 @@
     <ul class="nav-links" id="nav-menu">
       <li><a href="#hero">Home</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#cv">CV</a></li>
       <li><a href="#portfolio">Project Gallery</a></li>
       <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#cv">CV</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -965,7 +1026,8 @@
           I design interfaces, build web & app prototypes, and create brand identities that connect. 
           Let’s turn your idea into a memorable product.
         </p>
-        <a href="#contact" class="btn">Work with me</a>
+        <!-- Work with me button now opens WhatsApp with specific message -->
+        <a href="https://wa.me/923458740419?text=Hi%20Saad%2C%20I%20am%20Interested%20in%20your%20plan%20packages.%20Can%20we%20discuss%20on%20it%3F%3F" class="btn" target="_blank">Work with me</a>
       </div>
       <!-- Right column: profile image -->
       <div class="hero-image-col">
@@ -981,6 +1043,8 @@
   <!-- ========== SERVICES SECTION ========== -->
   <section id="services" class="fade-section container">
     <h2>Services</h2>
+    <br>
+    <h4>Here are our Services:</h4>
     <div class="services-grid">
       <!-- UI/UX Design -->
       <div class="service-card">
@@ -1009,6 +1073,29 @@
     </div>
   </section>
 <br>
+
+  <!-- ========== CV / ABOUT SECTION ========== -->
+  <section id="cv" class="fade-section container">
+    <h2>About & CV</h2>
+    <div class="cv-content">
+      <div class="cv-text">
+        <h3>Saad Rasheed</h3>
+        <p style="font-size: 1.2rem; color: #FBBF24;">UI/UX & Brand Designer</p>
+        <p>
+          I’ve been designing digital products for 1+ years, collaborating with startups and agencies. 
+          My work focuses on clean aesthetics, smooth interactions, and business goals. 
+          This website itself is a part of my portfolio – designed and built from scratch to showcase my skills.
+        </p>
+        <br>
+        <p>Click on CV for full View</p>
+      </div>
+      <div class="cv-image" id="cvImage">
+        <img src="cv 4.png" alt="CV preview">
+      </div>
+    </div>
+  </section>
+<br>
+
   <!-- ========== PORTFOLIO CAROUSEL ========== -->
   <section id="portfolio" class="fade-section container">
     <h2>Project Gallery</h2>
@@ -1087,14 +1174,17 @@
     <p style="color:#C5C6C7; margin-top: 1rem; text-align: right;"><i>← swipe or use buttons →</i></p>
   </section>
 
-  <!-- ========== PRICING SECTION (NEW) ========== -->
+  <!-- ========== PRICING SECTION ========== -->
   <section id="pricing" class="fade-section container">
     <h2>Pricing Plans</h2>
+    <br>
+    <h4>We recommend the Intermediate Plan for your project</h4>
     <div class="pricing-grid">
-      <!-- Basic Plan -->
+      <!-- Standard Plan -->
       <div class="pricing-card">
-        <h3>Basic</h3>
-        <div class="price">$5 <span>/ project</span></div>
+        <h3>Standard</h3>
+        <div class="starting-from">Starting from</div>
+        <div class="price">$10 <span>/ project</span></div>
         <ul>
           <li><i class="fas fa-check-circle"></i> Complete Brand Kit (Logo + Banner)</li>
           <li><i class="fas fa-check-circle"></i> 1 Social Media Post Design</li>
@@ -1102,58 +1192,93 @@
           <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Web/App Development</li>
           <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Advanced Prototyping</li>
         </ul>
-        <a href="#contact" class="btn">Choose Basic</a>
+        <a href="#contact" class="btn">Select Standard</a>
       </div>
-      <!-- Medium Plan (featured) -->
+      <!-- Intermediate Plan (featured) -->
       <div class="pricing-card featured">
-        <h3>Medium</h3>
-        <div class="price">$10 <span>/ project</span></div>
-        <ul>
-          <li><i class="fas fa-check-circle"></i> Complete Brand Identity (Logo, Graphics, Banner)</li>
-          <li><i class="fas fa-check-circle"></i> 3 Social Media Post Designs</li>
-          <li><i class="fas fa-check-circle"></i> Full UI/UX Design (up to 10 screens)</li>
-          <li><i class="fas fa-check-circle"></i> Basic Website/App Development (1 page)</li>
-          <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Advanced Development</li>
-        </ul>
-        <a href="#contact" class="btn">Choose Medium</a>
-      </div>
-      <!-- Professional Plan -->
-      <div class="pricing-card">
-        <h3>Professional</h3>
+        <h3>Intermediate</h3>
+        <div class="starting-from">Starting from</div>
         <div class="price">$15 <span>/ project</span></div>
         <ul>
-          <li><i class="fas fa-check-circle"></i> Complete Brand Identity (Unlimited revisions)</li>
-          <li><i class="fas fa-check-circle"></i> 5+ Social Media Post Designs</li>
-          <li><i class="fas fa-check-circle"></i> Advanced UI/UX (unlimited screens)</li>
-          <li><i class="fas fa-check-circle"></i> Full Web/App Development (up to 5 pages)</li>
-          <li><i class="fas fa-check-circle"></i> Priority Support & Consultation</li>
+          <li><i class="fas fa-check-circle"></i> Complete Brand Identity (Logo, Graphics, Banner)</li>
+          <li><i class="fas fa-check-circle"></i> 3 Premium Social Media Post Designs</li>
+          <li><i class="fas fa-check-circle"></i> Full UI/UX Design (up to 10 screens)</li>
+          <li><i class="fas fa-check-circle"></i> Basic Website/App Development (3 pages)</li>
+          <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Advanced Development</li>
         </ul>
-        <a href="#contact" class="btn">Choose Professional</a>
+        <a href="#contact" class="btn">Select Intermediate</a>
       </div>
+      <!-- Premium Plan -->
+      <div class="pricing-card">
+        <h3>Premium</h3>
+        <div class="starting-from">Starting from</div>
+        <div class="price">$25 <span>/ project</span></div>
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Complete Brand Identity (10 revisions)</li>
+          <li><i class="fas fa-check-circle"></i> 5+ Social Media Post Designs</li>
+          <li><i class="fas fa-check-circle"></i> Advanced UI/UX (25 screens)</li>
+          <li><i class="fas fa-check-circle"></i> Full Custom Code Web/App Development</li>
+          <li><i class="fas fa-check-circle"></i> Priority 24/7 Support & Consultation</li>
+        </ul>
+        <a href="#contact" class="btn">Select Premium</a>
+      </div>
+
+      <!-- CUSTOM PLAN with checkboxes -->
+      <div class="pricing-card" id="customPlan">
+        <h3>Custom Plan</h3>
+        <div class="starting-from">Build your own</div>
+        <div class="custom-total" id="customTotal">$0</div>
+        <div style="text-align: left; margin: 1rem 0;">
+          <div class="custom-option">
+            <input type="checkbox" id="opt1" value="20" onchange="updateCustomTotal()">
+            <label for="opt1">Logo Design (+$20)</label>
+          </div>
+          <div class="custom-option">
+            <input type="checkbox" id="opt2" value="50" onchange="updateCustomTotal()">
+            <label for="opt2">Complete Brand Identity (+$50)</label>
+          </div>
+          <div class="custom-option">
+            <input type="checkbox" id="opt3" value="10" onchange="updateCustomTotal()">
+            <label for="opt3">Social Media Post (per post) (+$10)</label>
+          </div>
+          <div class="custom-option">
+            <input type="checkbox" id="opt4" value="15" onchange="updateCustomTotal()">
+            <label for="opt4">UI/UX Design (per screen) (+$15)</label>
+          </div>
+          <div class="custom-option">
+            <input type="checkbox" id="opt5" value="30" onchange="updateCustomTotal()">
+            <label for="opt5">Web/App Development (per page) (+$30)</label>
+          </div>
+          <div class="custom-option">
+            <input type="checkbox" id="opt6" value="25" onchange="updateCustomTotal()">
+            <label for="opt6">Priority Consultation (+$25)</label>
+          </div>
+        </div>
+        <a href="#contact" class="btn" onclick="sendCustomPlan()">Request Custom</a>
+      </div>
+    </div>
+
+    <!-- Payment Methods Section -->
+    <div style="margin-top: 3rem; text-align: center;">
+      <h3 style="color: #FBBF24;">Accepted Payment Methods</h3>
+      <div class="payment-methods">
+        <div class="payment-method"><i class="fas fa-mobile-alt"></i> JazzCash</div>
+        <div class="payment-method"><i class="fas fa-mobile-alt"></i> EasyPaisa</div>
+        <div class="payment-method"><i class="fab fa-cc-visa"></i> Card (Visa/Master)</div>
+      </div>
+      <!-- 
+        🔹 PAYMENT INTEGRATION NOTES:
+        - For JazzCash / EasyPaisa: Use their official merchant APIs (JazzCash API, EasyPaisa API). 
+          You'll need to register as a merchant and get API credentials. Then create a backend endpoint 
+          to initiate payments and handle callbacks.
+        - For Card payments: Integrate Stripe or PayPal. Stripe is easier: add Stripe.js and create 
+          a PaymentIntent on your server. For a simple start, you can use buy buttons that redirect 
+          to a payment link.
+        - These badges are just visual; actual payment flow requires backend integration.
+      -->
     </div>
   </section>
 
-  <!-- ========== CV / ABOUT SECTION ========== -->
-  <section id="cv" class="fade-section container">
-    <h2>About & CV</h2>
-    <div class="cv-content">
-      <div class="cv-text">
-        <h3>Saad Rasheed</h3>
-        <p style="font-size: 1.2rem; color: #FBBF24;">UI/UX & Brand Designer</p>
-        <p>
-          I’ve been designing digital products for 1+ years, collaborating with startups and agencies. 
-          My work focuses on clean aesthetics, smooth interactions, and business goals. 
-          This website itself is a part of my portfolio – designed and built from scratch to showcase my skills.
-        </p>
-        <br>
-        <p>Click on CV for full View</p>
-      </div>
-      <div class="cv-image" id="cvImage">
-        <img src="cv 4.png" alt="CV preview">
-      </div>
-    </div>
-  </section>
-<br>
   <!-- ========== CONTACT SECTION ========== -->
   <section id="contact" class="fade-section container">
     <h2>Contact</h2>
@@ -1187,7 +1312,7 @@
           </div>
         </div>
       </div>
-      <!-- Right: contact form (NEW) -->
+      <!-- Right: contact form -->
       <div class="contact-form">
         <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Send a Message</h3>
         <form action="https://formsubmit.co/saadrasheedpersonal@gmail.com" method="POST">
@@ -1227,9 +1352,9 @@
     <div class="footer-links">
       <a href="#hero">Home</a>
       <a href="#services">Services</a>
+      <a href="#cv">CV</a>
       <a href="#portfolio">Project Gallery</a>
       <a href="#pricing">Pricing</a>
-      <a href="#cv">CV</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -1455,6 +1580,33 @@
       }
     });
   })();
+
+  // ---------- CUSTOM PLAN PRICE CALCULATOR ----------
+  function updateCustomTotal() {
+    let total = 0;
+    if (document.getElementById('opt1').checked) total += 20;
+    if (document.getElementById('opt2').checked) total += 50;
+    if (document.getElementById('opt3').checked) total += 10;
+    if (document.getElementById('opt4').checked) total += 15;
+    if (document.getElementById('opt5').checked) total += 30;
+    if (document.getElementById('opt6').checked) total += 25;
+    document.getElementById('customTotal').innerText = '$' + total;
+  }
+
+  function sendCustomPlan() {
+    // Build message with selected options
+    let selected = [];
+    if (document.getElementById('opt1').checked) selected.push('Logo Design');
+    if (document.getElementById('opt2').checked) selected.push('Complete Brand Identity');
+    if (document.getElementById('opt3').checked) selected.push('Social Media Post');
+    if (document.getElementById('opt4').checked) selected.push('UI/UX Design');
+    if (document.getElementById('opt5').checked) selected.push('Web/App Development');
+    if (document.getElementById('opt6').checked) selected.push('Priority Consultation');
+    let total = document.getElementById('customTotal').innerText;
+    let message = "Hi Saad, I'm interested in a custom plan with: " + selected.join(', ') + ". Total estimated: " + total + ". Can we discuss?";
+    // Open WhatsApp with the message
+    window.open('https://wa.me/923458740419?text=' + encodeURIComponent(message), '_blank');
+  }
 </script>
 
 <!-- 
@@ -1467,7 +1619,8 @@
   - CV: src="cv 4.png" → your CV image.
   - Social links: replace # with your URLs.
   - Email & WhatsApp: update if needed.
-  - Form: The form already sends to saadrasheedpersonal@gmail.com via FormSubmit. No extra setup needed.
+  - Form: already sends to saadrasheedpersonal@gmail.com via FormSubmit.
+  - Payment methods: comments added above payment badges; actual integration requires backend work.
 -->
 </body>
 </html>
