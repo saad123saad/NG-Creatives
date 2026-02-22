@@ -4,1468 +4,301 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>NGCreatives · Saad Rasheed</title>
-  <!-- Google Fonts: Inter + Fallback -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <!-- Font Awesome 6 (Free) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* ---------- GLOBAL RESET & VARIABLES ---------- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background-color: #0B0C10; color: #EDEDED; line-height: 1.6; }
+    .ticker-wrap { width: 100%; background: #1F2833; padding: 0.8rem 0; border-bottom: 1px solid #FBBF24; overflow: hidden; white-space: nowrap; }
+    .ticker { display: inline-block; animation: ticker 20s linear infinite; }
+    .ticker-item { display: inline-block; padding: 0 2rem; color: #FBBF24; font-weight: 600; font-size: 1.1rem; }
+    .ticker-item i { margin-right: 0.5rem; }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 5rem 0 4rem; position: relative; }
+    .fade-section { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.2,0.9,0.3,1), transform 0.8s cubic-bezier(0.2,0.9,0.3,1); }
+    .fade-section.visible { opacity: 1; transform: translateY(0); }
+    h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 2rem; letter-spacing: -0.02em; position: relative; display: inline-block; }
+    h2:after { content: ''; position: absolute; bottom: -10px; left: 0; width: 70px; height: 4px; background: #FBBF24; border-radius: 4px; }
+    .btn { display: inline-block; background: transparent; border: 2px solid #FBBF24; color: #FBBF24; padding: 0.75rem 2rem; font-weight: 600; border-radius: 40px; text-decoration: none; transition: all 0.3s ease; font-size: 1rem; }
+    .btn:hover { background: #FBBF24; color: #0B0C10; box-shadow: 0 10px 20px -8px rgba(251,191,36,0.3); }
+    header { position: sticky; top: 0; z-index: 100; background: rgba(11,12,16,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 1rem 0; }
+    .header-wrapper { display: flex; align-items: center; justify-content: space-between; }
+    .logo a { font-size: 1.75rem; font-weight: 800; color: #EDEDED; text-decoration: none; }
+    .logo span { color: #FBBF24; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { color: #EDEDED; text-decoration: none; font-weight: 500; font-size: 1rem; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: #FBBF24; }
+    .menu-toggle { display: none; font-size: 1.8rem; color: #EDEDED; cursor: pointer; }
+    .hero { min-height: 90vh; display: flex; align-items: center; padding-top: 2rem; }
+    .hero-wrapper { display: flex; align-items: center; gap: 4rem; width: 100%; }
+    .hero-content { flex: 1.2; }
+    .hero-image-col { flex: 0.8; display: flex; justify-content: center; align-items: center; }
+    .hero-image-col img { width: 100%; max-width: 380px; height: auto; aspect-ratio: 1/1; object-fit: cover; border-radius: 50%; border: 4px solid #FBBF24; box-shadow: 0 20px 30px -10px rgba(0,0,0,0.6); transition: transform 0.3s ease; }
+    .hero-image-col img:hover { transform: scale(1.02); }
+    .hero-content h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -0.03em; }
+    .hero-highlight { color: #FBBF24; border-bottom: 4px solid #FBBF24; display: inline-block; }
+    .hero-sub { font-size: 1.5rem; color: #C5C6C7; margin-bottom: 1.5rem; font-weight: 400; }
+    .hero-text { max-width: 600px; margin-bottom: 2rem; color: #C5C6C7; font-size: 1.2rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.8rem; margin-top: 2rem; }
+    .service-card { background: #1F2833; padding: 2rem 1.5rem; border-radius: 24px; transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.05); }
+    .service-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5); border-color: #FBBF2440; }
+    .service-icon { font-size: 2.5rem; color: #FBBF24; margin-bottom: 1.2rem; }
+    .service-card h3 { font-size: 1.5rem; margin-bottom: 0.8rem; }
+    .service-card p { color: #C5C6C7; font-size: 0.95rem; }
+    .cv-content { display: flex; align-items: center; gap: 4rem; background: #1F2833; border-radius: 32px; padding: 3rem; }
+    .cv-text { flex: 1; }
+    .cv-text h3 { font-size: 2rem; margin-bottom: 1rem; }
+    .cv-text p { color: #C5C6C7; margin-bottom: 1.5rem; }
+    .cv-image { flex: 0 0 200px; border-radius: 20px; overflow: hidden; border: 2px solid #FBBF24; cursor: pointer; }
+    .cv-image img { width: 100%; height: auto; display: block; }
+    .portfolio-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 1rem; }
+    .portfolio-header h2 { margin-bottom: 0; }
+    .portfolio-header .view-plans-link { color: #FBBF24; text-decoration: none; font-weight: 600; font-size: 1.1rem; border-bottom: 2px solid #FBBF24; padding-bottom: 2px; transition: 0.2s; }
+    .portfolio-header .view-plans-link:hover { color: white; border-color: white; }
+    .carousel-container { position: relative; margin-top: 1rem; }
+    .portfolio-carousel { display: flex; gap: 2rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1.5rem; scrollbar-width: thin; scrollbar-color: #FBBF24 #1F2833; }
+    .portfolio-carousel::-webkit-scrollbar { height: 6px; }
+    .portfolio-carousel::-webkit-scrollbar-thumb { background: #FBBF24; border-radius: 10px; }
+    .portfolio-carousel::-webkit-scrollbar-track { background: #1F2833; }
+    .project-card { flex: 0 0 380px; background: #1F2833; border-radius: 28px; padding: 1.8rem; scroll-snap-align: start; transition: all 0.3s ease; border: 1px solid #2C3E50; cursor: pointer; }
+    .project-card:hover { transform: scale(1.02); box-shadow: 0 25px 35px -12px black; border-color: #FBBF24; }
+    .video-placeholder { width: 100%; height: 180px; border-radius: 16px; overflow: hidden; margin-bottom: 1.2rem; cursor: pointer; position: relative; }
+    .video-placeholder img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .video-placeholder i { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 3rem; color: rgba(251,191,36,0.9); background: rgba(0,0,0,0.5); border-radius: 50%; padding: 0.2rem; transition: 0.2s; }
+    .video-placeholder:hover i { color: #FBBF24; background: rgba(0,0,0,0.7); }
+    .screenshot-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.6rem; margin: 1rem 0; }
+    .screenshot { height: 65px; background: #0B0C10; border-radius: 8px; overflow: hidden; border: 1px solid #2C3E50; }
+    .screenshot img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer; transition: transform 0.3s; }
+    .screenshot img:hover { transform: scale(1.05); }
+    .project-title { font-size: 1.4rem; font-weight: 700; margin: 1rem 0 0.5rem; }
+    .project-desc { color: #C5C6C7; font-size: 0.95rem; margin-bottom: 1.2rem; }
+    .project-link { color: #FBBF24; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 0.3rem; cursor: pointer; }
+    .carousel-buttons { display: flex; justify-content: flex-end; gap: 1rem; margin-bottom: 1rem; }
+    .carousel-btn { background: #1F2833; border: 1px solid #2C3E50; color: #EDEDED; width: 48px; height: 48px; border-radius: 50%; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+    .carousel-btn:hover { background: #FBBF24; color: #0B0C10; border-color: #FBBF24; }
+    .reviews-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; margin-top: 2rem; }
+    .review-card { background: #1F2833; border-radius: 24px; padding: 1.5rem; border: 1px solid #2C3E50; transition: 0.3s; }
+    .review-card:hover { transform: translateY(-5px); border-color: #FBBF24; }
+    .review-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .review-avatar { width: 50px; height: 50px; border-radius: 50%; background: #0B0C10; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #FBBF24; border: 2px solid #FBBF24; }
+    .review-info h4 { font-size: 1.1rem; margin-bottom: 0.2rem; }
+    .review-info p { color: #FBBF24; font-size: 0.85rem; }
+    .review-text { color: #C5C6C7; font-size: 0.95rem; font-style: italic; margin: 1rem 0; }
+    .review-rating { color: #FBBF24; }
+    .top-projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 2rem; }
+    .top-project-card { background: #1F2833; border-radius: 24px; padding: 2rem; border: 1px solid #2C3E50; transition: 0.3s; }
+    .top-project-card:hover { transform: translateY(-5px); border-color: #FBBF24; }
+    .top-project-icon { font-size: 2.5rem; color: #FBBF24; margin-bottom: 1rem; }
+    .top-project-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: #FBBF24; }
+    .top-project-card p { color: #C5C6C7; font-size: 0.95rem; margin-bottom: 1rem; }
+    .top-project-tag { display: inline-block; background: #0B0C10; color: #FBBF24; padding: 0.2rem 1rem; border-radius: 20px; font-size: 0.8rem; border: 1px solid #FBBF24; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem; margin-top: 2rem; }
+    .pricing-card { background: #1F2833; border-radius: 24px; padding: 2rem 1.5rem; text-align: center; border: 1px solid #2C3E50; transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .pricing-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5); border-color: #FBBF24; }
+    .pricing-card.featured { border: 2px solid #FBBF24; transform: scale(1.02); }
+    .pricing-card .price { font-size: 2.5rem; font-weight: 800; color: #FBBF24; margin: 1rem 0; }
+    .pricing-card .price span { font-size: 1rem; font-weight: 400; color: #C5C6C7; }
+    .pricing-card .starting-from { font-size: 0.9rem; color: #C5C6C7; margin-top: -0.5rem; margin-bottom: 0.5rem; }
+    .pricing-card ul { list-style: none; margin: 1.5rem 0; text-align: left; }
+    .pricing-card li { margin: 0.8rem 0; display: flex; align-items: center; gap: 0.5rem; color: #C5C6C7; }
+    .pricing-card li i { color: #FBBF24; font-size: 1.1rem; width: 20px; }
+    .pricing-card .btn { margin-top: 1rem; width: 100%; }
+    .custom-option { text-align: left; margin: 0.8rem 0; display: flex; align-items: center; gap: 0.5rem; color: #C5C6C7; }
+    .custom-option input { width: 18px; height: 18px; accent-color: #FBBF24; cursor: pointer; }
+    .custom-option label { cursor: pointer; flex: 1; }
+    .custom-total { font-size: 1.8rem; font-weight: 700; color: #FBBF24; margin: 1rem 0; }
+    .payment-modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); backdrop-filter: blur(8px); align-items: center; justify-content: center; }
+    .payment-modal-content { background: #1F2833; border-radius: 32px; max-width: 900px; width: 90%; padding: 2rem; border: 1px solid #FBBF24; position: relative; display: flex; flex-wrap: wrap; gap: 2rem; }
+    .payment-close { position: absolute; top: 15px; right: 25px; color: #FBBF24; font-size: 2.5rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+    .payment-close:hover { color: white; }
+    .payment-left, .payment-right { flex: 1 1 300px; }
+    .payment-left { border-right: 1px solid #2C3E50; padding-right: 2rem; }
+    .payment-left h3, .payment-right h3 { color: #FBBF24; margin-bottom: 1.5rem; font-size: 1.8rem; }
+    .account-detail { background: #0B0C10; border-radius: 16px; padding: 1.2rem; margin-bottom: 1.5rem; border: 1px solid #2C3E50; }
+    .account-detail p { margin: 0.5rem 0; color: #C5C6C7; }
+    .account-detail i { color: #FBBF24; width: 25px; }
+    .guidance-list { list-style: none; }
+    .guidance-list li { margin: 1rem 0; display: flex; align-items: center; gap: 1rem; color: #C5C6C7; }
+    .guidance-list li i { color: #FBBF24; font-size: 1.5rem; width: 30px; }
+    .wa-link { display: inline-block; margin-top: 2rem; background: #25D366; color: white; padding: 0.8rem 2rem; border-radius: 40px; text-decoration: none; font-weight: 600; transition: 0.2s; }
+    .wa-link:hover { background: #128C7E; }
+    .faq-container { max-width: 800px; margin: 2rem auto 0; }
+    .faq-item { background: #1F2833; border-radius: 16px; margin-bottom: 1rem; border: 1px solid #2C3E50; overflow: hidden; }
+    .faq-question { padding: 1.2rem 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; transition: 0.2s; }
+    .faq-question:hover { background: rgba(251,191,36,0.1); }
+    .faq-question i { color: #FBBF24; transition: transform 0.3s; }
+    .faq-question.active i { transform: rotate(180deg); }
+    .faq-answer { max-height: 0; padding: 0 1.5rem; overflow: hidden; transition: max-height 0.3s ease-out; color: #C5C6C7; border-top: 0px solid #2C3E50; }
+    .faq-answer.show { max-height: 200px; padding: 1.2rem 1.5rem; border-top-width: 1px; }
+    /* Contact Form */
+    .contact-form-wrapper { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-group input, .form-group textarea { width: 100%; padding: 0.8rem 1rem; background: #0B0C10; border: 1px solid #2C3E50; border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 1rem; color: #EDEDED; transition: 0.2s; }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #FBBF24; }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+    .submit-btn { background: #FBBF24; color: #0B0C10; border: none; padding: 0.8rem; font-weight: 700; font-size: 1.1rem; border-radius: 40px; cursor: pointer; transition: 0.2s; width: 100%; }
+    .submit-btn:hover { background: #e0a81f; }
+    .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+    .whatsapp-float { position: fixed; bottom: 50px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 999; transition: 0.3s; text-decoration: none; }
+    .whatsapp-float:hover { background: #128C7E; transform: scale(1.1); }
+    .chat-float { position: fixed; bottom: 50px; left: 20px; background: #FBBF24; color: #0B0C10; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; box-shadow: 0 10px 20px rgba(0,0,0,0.3); z-index: 999; transition: 0.3s; cursor: pointer; }
+    .chat-float:hover { background: #e0a81f; transform: scale(1.1); }
+    .chat-window { display: none; position: fixed; bottom: 120px; left: 20px; width: 320px; height: 480px; background: #1F2833; border-radius: 24px; border: 1px solid #FBBF24; z-index: 1000; flex-direction: column; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .chat-header { background: #0B0C10; padding: 1rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #FBBF24; }
+    .chat-header h4 { color: #FBBF24; font-size: 1.1rem; }
+    .chat-header i { color: #FBBF24; cursor: pointer; font-size: 1.3rem; }
+    .chat-messages { flex: 1; padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.8rem; }
+    .message { max-width: 85%; padding: 0.6rem 1rem; border-radius: 18px; font-size: 0.9rem; word-wrap: break-word; white-space: pre-line; }
+    .message.user { background: #FBBF24; color: #0B0C10; align-self: flex-end; border-bottom-right-radius: 4px; }
+    .message.bot { background: #0B0C10; color: #EDEDED; align-self: flex-start; border-bottom-left-radius: 4px; }
+    .quick-replies { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0.5rem 0.8rem; background: #0B0C10; border-top: 1px solid #2C3E50; }
+    .qr-btn { background: #1F2833; border: 1px solid #FBBF24; color: #FBBF24; padding: 0.25rem 0.7rem; border-radius: 20px; font-size: 0.75rem; cursor: pointer; transition: 0.2s; font-family: 'Inter', sans-serif; }
+    .qr-btn:hover { background: #FBBF24; color: #0B0C10; }
+    .chat-input-area { display: flex; padding: 0.8rem; background: #0B0C10; border-top: 1px solid #2C3E50; }
+    .chat-input-area input { flex: 1; padding: 0.6rem 1rem; background: #1F2833; border: 1px solid #2C3E50; border-radius: 30px; color: #EDEDED; font-family: 'Inter', sans-serif; outline: none; }
+    .chat-input-area input:focus { border-color: #FBBF24; }
+    .chat-input-area button { background: transparent; border: none; color: #FBBF24; font-size: 1.3rem; margin-left: 0.5rem; cursor: pointer; }
+    .trial-modal { display: none; position: fixed; z-index: 2100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); backdrop-filter: blur(8px); align-items: center; justify-content: center; }
+    .trial-modal-content { background: #1F2833; border-radius: 32px; max-width: 500px; width: 90%; padding: 2.5rem; border: 1px solid #FBBF24; position: relative; }
+    .trial-close { position: absolute; top: 15px; right: 25px; color: #FBBF24; font-size: 2.5rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+    .trial-close:hover { color: white; }
+    .trial-modal h3 { color: #FBBF24; font-size: 2rem; margin-bottom: 1.5rem; text-align: center; }
+    .trial-form .form-group { margin-bottom: 1.2rem; }
+    .trial-form input, .trial-form textarea { width: 100%; padding: 0.8rem 1rem; background: #0B0C10; border: 1px solid #2C3E50; border-radius: 12px; font-family: 'Inter', sans-serif; font-size: 1rem; color: #EDEDED; }
+    .trial-form input:focus, .trial-form textarea:focus { outline: none; border-color: #FBBF24; }
+    .trial-form textarea { min-height: 100px; resize: vertical; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 2rem; }
+    .contact-info { background: #1F2833; border-radius: 24px; padding: 2.5rem; }
+    .contact-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+    .contact-icon { font-size: 1.8rem; color: #FBBF24; width: 50px; }
+    .contact-detail a { color: #EDEDED; text-decoration: none; font-size: 1.2rem; font-weight: 500; transition: color 0.2s; }
+    .contact-detail a:hover { color: #FBBF24; }
+    .contact-detail p { color: #C5C6C7; }
+    .social-links { display: flex; gap: 1.8rem; margin-top: 2rem; flex-wrap: wrap; }
+    .social-links a { color: #C5C6C7; font-size: 2rem; transition: all 0.2s; }
+    .social-links a:hover { color: #FBBF24; transform: translateY(-5px); }
+    footer { background: #0f1217; padding: 2.5rem 0; border-top: 1px solid #1F2833; }
+    .footer-content { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+    .footer-links a { color: #C5C6C7; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: #FBBF24; }
+    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); backdrop-filter: blur(8px); align-items: center; justify-content: center; }
+    .modal-content { max-width: 90%; max-height: 90%; background: #1F2833; border-radius: 32px; padding: 2rem; overflow-y: auto; position: relative; border: 1px solid #FBBF24; }
+    .modal-close { position: absolute; top: 15px; right: 25px; color: #FBBF24; font-size: 2.5rem; font-weight: bold; cursor: pointer; transition: 0.3s; z-index: 1001; }
+    .modal-close:hover { color: white; }
+    #modalVideo { width: 100%; max-height: 50vh; border-radius: 16px; margin-bottom: 1.5rem; }
+    .modal-screenshots { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin: 1.5rem 0; }
+    .modal-screenshots img { width: 100%; height: 120px; object-fit: cover; border-radius: 12px; cursor: pointer; border: 2px solid transparent; transition: 0.2s; }
+    .modal-screenshots img:hover { border-color: #FBBF24; transform: scale(1.02); }
+    .modal-title { font-size: 2rem; margin-bottom: 0.5rem; }
+    .modal-desc { color: #C5C6C7; font-size: 1.1rem; }
+    .image-lightbox { display: none; position: fixed; z-index: 1100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+    .image-lightbox img { max-width: 90%; max-height: 90%; border-radius: 16px; border: 3px solid #FBBF24; }
+    .image-lightbox .close { position: absolute; top: 20px; right: 30px; color: #FBBF24; font-size: 3rem; cursor: pointer; }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0B0C10;
-      color: #EDEDED;
-      line-height: 1.6;
-    }
-
-    /* ---------- TICKER (TOP MARQUEE) ---------- */
-    .ticker-wrap {
-      width: 100%;
-      background: #1F2833;
-      padding: 0.8rem 0;
-      border-bottom: 1px solid #FBBF24;
-      overflow: hidden;
-      white-space: nowrap;
-      position: relative;
-    }
-
-    .ticker {
-      display: inline-block;
-      animation: ticker 20s linear infinite;
-    }
-
-    .ticker-item {
-      display: inline-block;
-      padding: 0 2rem;
-      color: #FBBF24;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .ticker-item i {
-      margin-right: 0.5rem;
-    }
-
-    @keyframes ticker {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* ---------- CONTAINER & SECTIONS ---------- */
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    section {
-      padding: 5rem 0 4rem;
-      position: relative;
-    }
-
-    .fade-section {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.8s cubic-bezier(0.2, 0.9, 0.3, 1);
-    }
-
-    .fade-section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
-      letter-spacing: -0.02em;
-      position: relative;
-      display: inline-block;
-    }
-
-    h2:after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 70px;
-      height: 4px;
-      background: #FBBF24;
-      border-radius: 4px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: transparent;
-      border: 2px solid #FBBF24;
-      color: #FBBF24;
-      padding: 0.75rem 2rem;
-      font-weight: 600;
-      border-radius: 40px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      font-size: 1rem;
-    }
-
-    .btn:hover {
-      background: #FBBF24;
-      color: #0B0C10;
-      box-shadow: 0 10px 20px -8px rgba(251, 191, 36, 0.3);
-    }
-
-    .btn-small {
-      display: inline-block;
-      background: transparent;
-      border: 2px solid #FBBF24;
-      color: #FBBF24;
-      padding: 0.4rem 1.2rem;
-      font-weight: 600;
-      border-radius: 40px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      font-size: 0.9rem;
-    }
-
-    .btn-small:hover {
-      background: #FBBF24;
-      color: #0B0C10;
-      box-shadow: 0 10px 20px -8px rgba(251, 191, 36, 0.3);
-    }
-
-    /* ---------- STICKY HEADER ---------- */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(11, 12, 16, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      padding: 1rem 0;
-    }
-
-    .header-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo a {
-      font-size: 1.75rem;
-      font-weight: 800;
-      color: #EDEDED;
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-
-    .logo span {
-      color: #FBBF24;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: #EDEDED;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: color 0.2s;
-      position: relative;
-    }
-
-    .nav-links a:hover {
-      color: #FBBF24;
-    }
-
-    .nav-links a.active {
-      color: #FBBF24;
-    }
-
-    .menu-toggle {
-      display: none;
-      font-size: 1.8rem;
-      color: #EDEDED;
-      cursor: pointer;
-    }
-
-    /* ---------- HERO ---------- */
-    .hero {
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      padding-top: 2rem;
-    }
-
-    .hero-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 4rem;
-      width: 100%;
-    }
-
-    .hero-content {
-      flex: 1.2;
-    }
-
-    .hero-image-col {
-      flex: 0.8;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero-image-col img {
-      width: 100%;
-      max-width: 380px;
-      height: auto;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid #FBBF24;
-      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.6);
-      transition: transform 0.3s ease;
-    }
-
-    .hero-image-col img:hover {
-      transform: scale(1.02);
-    }
-
-    .hero-content h1 {
-      font-size: 4rem;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-      letter-spacing: -0.03em;
-    }
-
-    .hero-highlight {
-      color: #FBBF24;
-      border-bottom: 4px solid #FBBF24;
-      display: inline-block;
-    }
-
-    .hero-sub {
-      font-size: 1.5rem;
-      color: #C5C6C7;
-      margin-bottom: 1.5rem;
-      font-weight: 400;
-    }
-
-    .hero-text {
-      max-width: 600px;
-      margin-bottom: 2rem;
-      color: #C5C6C7;
-      font-size: 1.2rem;
-    }
-
-    /* ---------- SERVICES ---------- */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.8rem;
-      margin-top: 2rem;
-    }
-
-    .service-card {
-      background: #1F2833;
-      padding: 2rem 1.5rem;
-      border-radius: 24px;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .service-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5);
-      border-color: #FBBF2440;
-    }
-
-    .service-icon {
-      font-size: 2.5rem;
-      color: #FBBF24;
-      margin-bottom: 1.2rem;
-    }
-
-    .service-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .service-card p {
-      color: #C5C6C7;
-      font-size: 0.95rem;
-    }
-
-    /* ---------- CV ---------- */
-    .cv-content {
-      display: flex;
-      align-items: center;
-      gap: 4rem;
-      background: #1F2833;
-      border-radius: 32px;
-      padding: 3rem;
-    }
-
-    .cv-text {
-      flex: 1;
-    }
-
-    .cv-text h3 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .cv-text p {
-      color: #C5C6C7;
-      margin-bottom: 1.5rem;
-    }
-
-    .cv-image {
-      flex: 0 0 200px;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 2px solid #FBBF24;
-      cursor: pointer;
-      height: fit-content;
-    }
-
-    .cv-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* ---------- PORTFOLIO CAROUSEL ---------- */
-    .portfolio-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-
-    .portfolio-header h2 {
-      margin-bottom: 0;
-    }
-
-    .portfolio-header .view-plans-link {
-      color: #FBBF24;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      border-bottom: 2px solid #FBBF24;
-      padding-bottom: 2px;
-      transition: 0.2s;
-    }
-
-    .portfolio-header .view-plans-link:hover {
-      color: white;
-      border-color: white;
-    }
-
-    .carousel-container {
-      position: relative;
-      margin-top: 1rem;
-    }
-
-    .portfolio-carousel {
-      display: flex;
-      gap: 2rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding-bottom: 1.5rem;
-      scrollbar-width: thin;
-      scrollbar-color: #FBBF24 #1F2833;
-    }
-
-    .portfolio-carousel::-webkit-scrollbar {
-      height: 6px;
-    }
-
-    .portfolio-carousel::-webkit-scrollbar-thumb {
-      background: #FBBF24;
-      border-radius: 10px;
-    }
-
-    .portfolio-carousel::-webkit-scrollbar-track {
-      background: #1F2833;
-    }
-
-    .project-card {
-      flex: 0 0 380px;
-      background: #1F2833;
-      border-radius: 28px;
-      padding: 1.8rem;
-      scroll-snap-align: start;
-      transition: all 0.3s ease;
-      border: 1px solid #2C3E50;
-      cursor: pointer;
-    }
-
-    .project-card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 25px 35px -12px black;
-      border-color: #FBBF24;
-    }
-
-    .video-placeholder {
-      width: 100%;
-      height: 180px;
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 1.2rem;
-      cursor: pointer;
-      position: relative;
-    }
-
-    .video-placeholder img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .video-placeholder i {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 3rem;
-      color: rgba(251, 191, 36, 0.9);
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 50%;
-      padding: 0.2rem;
-      transition: 0.2s;
-    }
-
-    .video-placeholder:hover i {
-      color: #FBBF24;
-      background: rgba(0, 0, 0, 0.7);
-    }
-
-    .screenshot-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.6rem;
-      margin: 1rem 0;
-    }
-
-    .screenshot {
-      height: 65px;
-      background: #0B0C10;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid #2C3E50;
-    }
-
-    .screenshot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    .screenshot img:hover {
-      transform: scale(1.05);
-    }
-
-    .project-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      margin: 1rem 0 0.5rem;
-    }
-
-    .project-desc {
-      color: #C5C6C7;
-      font-size: 0.95rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .project-link {
-      color: #FBBF24;
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      cursor: pointer;
-    }
-
-    .carousel-buttons {
-      display: flex;
-      justify-content: flex-end;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .carousel-btn {
-      background: #1F2833;
-      border: 1px solid #2C3E50;
-      color: #EDEDED;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .carousel-btn:hover {
-      background: #FBBF24;
-      color: #0B0C10;
-      border-color: #FBBF24;
-    }
-
-    /* ---------- REVIEWS ---------- */
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .review-card {
-      background: #1F2833;
-      border-radius: 24px;
-      padding: 1.5rem;
-      border: 1px solid #2C3E50;
-      transition: 0.3s;
-    }
-
-    .review-card:hover {
-      transform: translateY(-5px);
-      border-color: #FBBF24;
-    }
-
-    .review-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .review-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: #0B0C10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      color: #FBBF24;
-      border: 2px solid #FBBF24;
-    }
-
-    .review-info h4 {
-      font-size: 1.1rem;
-      margin-bottom: 0.2rem;
-    }
-
-    .review-info p {
-      color: #FBBF24;
-      font-size: 0.85rem;
-    }
-
-    .review-text {
-      color: #C5C6C7;
-      font-size: 0.95rem;
-      font-style: italic;
-      margin: 1rem 0;
-    }
-
-    .review-rating {
-      color: #FBBF24;
-    }
-
-    /* ---------- TOP PROJECTS ---------- */
-    .top-projects-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .top-project-card {
-      background: #1F2833;
-      border-radius: 24px;
-      padding: 2rem;
-      border: 1px solid #2C3E50;
-      transition: 0.3s;
-    }
-
-    .top-project-card:hover {
-      transform: translateY(-5px);
-      border-color: #FBBF24;
-    }
-
-    .top-project-icon {
-      font-size: 2.5rem;
-      color: #FBBF24;
-      margin-bottom: 1rem;
-    }
-
-    .top-project-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-      color: #FBBF24;
-    }
-
-    .top-project-card h4 {
-      font-size: 1.1rem;
-      margin: 1rem 0 0.5rem;
-      color: #EDEDED;
-    }
-
-    .top-project-card p {
-      color: #C5C6C7;
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-
-    .top-project-tag {
-      display: inline-block;
-      background: #0B0C10;
-      color: #FBBF24;
-      padding: 0.2rem 1rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      border: 1px solid #FBBF24;
-    }
-
-    /* ---------- PRICING CARDS ---------- */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .pricing-card {
-      background: #1F2833;
-      border-radius: 24px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      border: 1px solid #2C3E50;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .pricing-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5);
-      border-color: #FBBF24;
-    }
-
-    .pricing-card.featured {
-      border: 2px solid #FBBF24;
-      transform: scale(1.02);
-    }
-
-    .pricing-card .price {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: #FBBF24;
-      margin: 1rem 0;
-    }
-
-    .pricing-card .price span {
-      font-size: 1rem;
-      font-weight: 400;
-      color: #C5C6C7;
-    }
-
-    .pricing-card .starting-from {
-      font-size: 0.9rem;
-      color: #C5C6C7;
-      margin-top: -0.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .pricing-card ul {
-      list-style: none;
-      margin: 1.5rem 0;
-      text-align: left;
-    }
-
-    .pricing-card li {
-      margin: 0.8rem 0;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #C5C6C7;
-    }
-
-    .pricing-card li i {
-      color: #FBBF24;
-      font-size: 1.1rem;
-      width: 20px;
-    }
-
-    .pricing-card .btn {
-      margin-top: 1rem;
-      width: 100%;
-    }
-
-    /* Custom plan checkboxes */
-    .custom-option {
-      text-align: left;
-      margin: 0.8rem 0;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #C5C6C7;
-    }
-
-    .custom-option input {
-      width: 18px;
-      height: 18px;
-      accent-color: #FBBF24;
-      cursor: pointer;
-    }
-
-    .custom-option label {
-      cursor: pointer;
-      flex: 1;
-    }
-
-    .custom-total {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #FBBF24;
-      margin: 1rem 0;
-    }
-
-    /* ---------- SIMPLE PAYMENT POPUP ---------- */
-    .payment-modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.95);
-      backdrop-filter: blur(8px);
-      align-items: center;
-      justify-content: center;
-    }
-
-    .payment-modal-content {
-      background: #1F2833;
-      border-radius: 32px;
-      max-width: 900px;
-      width: 90%;
-      padding: 2rem;
-      border: 1px solid #FBBF24;
-      position: relative;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-    }
-
-    .payment-close {
-      position: absolute;
-      top: 15px;
-      right: 25px;
-      color: #FBBF24;
-      font-size: 2.5rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .payment-close:hover {
-      color: white;
-    }
-
-    .payment-left, .payment-right {
-      flex: 1 1 300px;
-    }
-
-    .payment-left {
-      border-right: 1px solid #2C3E50;
-      padding-right: 2rem;
-    }
-
-    .payment-left h3 {
-      color: #FBBF24;
-      margin-bottom: 1.5rem;
-      font-size: 1.8rem;
-    }
-
-    .account-detail {
-      background: #0B0C10;
-      border-radius: 16px;
-      padding: 1.2rem;
-      margin-bottom: 1.5rem;
-      border: 1px solid #2C3E50;
-    }
-
-    .account-detail p {
-      margin: 0.5rem 0;
-      color: #C5C6C7;
-    }
-
-    .account-detail i {
-      color: #FBBF24;
-      width: 25px;
-    }
-
-    .payment-right h3 {
-      color: #FBBF24;
-      margin-bottom: 1.5rem;
-      font-size: 1.8rem;
-    }
-
-    .guidance-list {
-      list-style: none;
-    }
-
-    .guidance-list li {
-      margin: 1rem 0;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      color: #C5C6C7;
-    }
-
-    .guidance-list li i {
-      color: #FBBF24;
-      font-size: 1.5rem;
-      width: 30px;
-    }
-
-    .wa-link {
-      display: inline-block;
-      margin-top: 2rem;
-      background: #25D366;
-      color: white;
-      padding: 0.8rem 2rem;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.2s;
-    }
-
-    .wa-link:hover {
-      background: #128C7E;
-    }
-
-    /* ---------- FAQ ---------- */
-    .faq-container {
-      max-width: 800px;
-      margin: 2rem auto 0;
-    }
-
-    .faq-item {
-      background: #1F2833;
-      border-radius: 16px;
-      margin-bottom: 1rem;
-      border: 1px solid #2C3E50;
-      overflow: hidden;
-    }
-
-    .faq-question {
-      padding: 1.2rem 1.5rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-      transition: 0.2s;
-    }
-
-    .faq-question:hover {
-      background: rgba(251, 191, 36, 0.1);
-    }
-
-    .faq-question i {
-      color: #FBBF24;
-      transition: transform 0.3s;
-    }
-
-    .faq-question.active i {
-      transform: rotate(180deg);
-    }
-
-    .faq-answer {
-      max-height: 0;
-      padding: 0 1.5rem;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out;
-      color: #C5C6C7;
-      border-top: 0px solid #2C3E50;
-    }
-
-    .faq-answer.show {
-      max-height: 200px;
-      padding: 1.2rem 1.5rem;
-      border-top-width: 1px;
-    }
-
-    /* ---------- CONTACT ---------- */
-    .contact-form form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.8rem 1rem;
-      background: #0B0C10;
-      border: 1px solid #2C3E50;
-      border-radius: 12px;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      color: #EDEDED;
-      transition: 0.2s;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: #FBBF24;
-    }
-
-    .form-group textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    .contact-form button {
-      background: #FBBF24;
-      color: #0B0C10;
-      border: none;
-      padding: 0.8rem;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border-radius: 40px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .contact-form button:hover {
-      background: #e0a81f;
-    }
-
-    /* ---------- FLOATING WHATSAPP ---------- */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 50px;
-      right: 20px;
-      background: #25D366;
-      color: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-      z-index: 999;
-      transition: 0.3s;
-      text-decoration: none;
-    }
-
-    .whatsapp-float:hover {
-      background: #128C7E;
-      transform: scale(1.1);
-    }
-
-    /* ---------- CONTACT INFO ---------- */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      margin-top: 2rem;
-    }
-
-    .contact-info {
-      background: #1F2833;
-      border-radius: 24px;
-      padding: 2.5rem;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .contact-icon {
-      font-size: 1.8rem;
-      color: #FBBF24;
-      width: 50px;
-    }
-
-    .contact-detail a {
-      color: #EDEDED;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .contact-detail a:hover {
-      color: #FBBF24;
-    }
-
-    .contact-detail p {
-      color: #C5C6C7;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 1.8rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .social-links a {
-      color: #C5C6C7;
-      font-size: 2rem;
-      transition: all 0.2s;
-    }
-
-    .social-links a:hover {
-      color: #FBBF24;
-      transform: translateY(-5px);
-    }
-
-    /* ---------- FOOTER ---------- */
-    footer {
-      background: #0f1217;
-      padding: 2.5rem 0;
-      border-top: 1px solid #1F2833;
-    }
-
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-
-    .footer-links a {
-      color: #C5C6C7;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .footer-links a:hover {
-      color: #FBBF24;
-    }
-
-    /* ---------- MODAL (project) ---------- */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.95);
-      backdrop-filter: blur(8px);
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-content {
-      max-width: 90%;
-      max-height: 90%;
-      background: #1F2833;
-      border-radius: 32px;
-      padding: 2rem;
-      overflow-y: auto;
-      position: relative;
-      border: 1px solid #FBBF24;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 15px;
-      right: 25px;
-      color: #FBBF24;
-      font-size: 2.5rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      z-index: 1001;
-    }
-
-    .modal-close:hover {
-      color: white;
-    }
-
-    #modalVideo {
-      width: 100%;
-      max-height: 50vh;
-      border-radius: 16px;
-      margin-bottom: 1.5rem;
-    }
-
-    .modal-screenshots {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-
-    .modal-screenshots img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 12px;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: 0.2s;
-    }
-
-    .modal-screenshots img:hover {
-      border-color: #FBBF24;
-      transform: scale(1.02);
-    }
-
-    .modal-title {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .modal-desc {
-      color: #C5C6C7;
-      font-size: 1.1rem;
-    }
-
-    /* image lightbox */
-    .image-lightbox {
-      display: none;
-      position: fixed;
-      z-index: 1100;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.95);
-      align-items: center;
-      justify-content: center;
-    }
-
-    .image-lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 16px;
-      border: 3px solid #FBBF24;
-    }
-
-    .image-lightbox .close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: #FBBF24;
-      font-size: 3rem;
-      cursor: pointer;
-    }
-
-    /* ========== IMPROVED RESPONSIVE ========== */
     @media screen and (max-width: 992px) {
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .cv-content {
-        flex-direction: column;
-        text-align: center;
-        padding: 2rem;
-      }
-
-      .cv-image {
-        width: 100%;
-      }
-
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 3rem;
-      }
-
-      .hero-wrapper {
-        gap: 2rem;
-      }
+      .services-grid { grid-template-columns: repeat(2,1fr); }
+      .cv-content { flex-direction: column; text-align: center; padding: 2rem; }
+      .cv-image { width: 100%; }
+      .contact-grid { grid-template-columns: 1fr; }
     }
-
     @media screen and (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        width: 100%;
-        background: #0B0C10f2;
-        backdrop-filter: blur(12px);
-        flex-direction: column;
-        align-items: center;
-        padding: 2rem 0;
-        gap: 1.8rem;
-        transform: translateY(-150%);
-        opacity: 0;
-        transition: all 0.4s ease;
-        pointer-events: none;
-        border-bottom: 1px solid #2C3E50;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-      }
-
-      .nav-links.active {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: all;
-      }
-
-      .hero-wrapper {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .hero-content h1 {
-        font-size: 2.7rem;
-      }
-
-      .hero-text {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .hero-image-col img {
-        max-width: 280px;
-      }
-
-      .project-card {
-        flex: 0 0 300px;
-      }
-
-      /* Grids to 2 columns on tablets */
-      .reviews-grid,
-      .top-projects-grid,
-      .pricing-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-      }
-
-      .footer-content {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-      }
-
-      .footer-links {
-        gap: 1rem;
-      }
-
-      .payment-modal-content {
-        flex-direction: column;
-      }
-      .payment-left {
-        border-right: none;
-        border-bottom: 1px solid #2C3E50;
-        padding-right: 0;
-        padding-bottom: 1rem;
-      }
+      .menu-toggle { display: block; }
+      .nav-links { position: fixed; top: 80px; left: 0; width: 100%; background: #0B0C10f2; backdrop-filter: blur(12px); flex-direction: column; align-items: center; padding: 2rem 0; gap: 1.8rem; transform: translateY(-150%); opacity: 0; transition: all 0.4s ease; pointer-events: none; border-bottom: 1px solid #2C3E50; z-index: 99; }
+      .nav-links.active { transform: translateY(0); opacity: 1; pointer-events: all; }
+      .hero-wrapper { flex-direction: column; text-align: center; }
+      .hero-content h1 { font-size: 2.7rem; }
+      .hero-text { margin-left: auto; margin-right: auto; }
+      .hero-image-col img { max-width: 280px; }
+      .project-card { flex: 0 0 300px; }
+      .reviews-grid, .top-projects-grid, .pricing-grid { grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+      .payment-modal-content { flex-direction: column; }
+      .payment-left { border-right: none; border-bottom: 1px solid #2C3E50; padding-right: 0; padding-bottom: 1rem; }
+      .chat-window { width: 280px; left: 10px; bottom: 100px; }
+      .chat-float { left: 10px; bottom: 40px; }
     }
-
-    @media screen and (max-width: 600px) {
-      .container {
-        padding: 0 1.5rem;
-      }
-      
-      section {
-        padding: 3rem 0;
-      }
-      
-      h2 {
-        font-size: 2rem;
-      }
-      
-      .hero-content h1 {
-        font-size: 2.2rem;
-      }
-      
-      .hero-sub {
-        font-size: 1.2rem;
-      }
-      
-      .service-card {
-        padding: 1.5rem 1rem;
-      }
-      
-      .service-icon {
-        font-size: 2rem;
-      }
-      
-      .service-card h3 {
-        font-size: 1.2rem;
-      }
-      
-      .service-card p {
-        font-size: 0.9rem;
-      }
-    }
-
     @media screen and (max-width: 480px) {
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      h2 {
-        font-size: 1.8rem;
-      }
-
-      .hero-content h1 {
-        font-size: 2rem;
-      }
-
-      .hero-image-col img {
-        max-width: 220px;
-      }
-
-      .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        font-size: 1.8rem;
-        bottom: 20px;
-        right: 20px;
-      }
-      
-      .portfolio-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-      }
-      
-      .project-card {
-        flex: 0 0 260px;
-        padding: 1.2rem;
-      }
-      
-      .screenshot {
-        height: 50px;
-      }
-      
-      .project-title {
-        font-size: 1.2rem;
-      }
-      
-      .project-desc {
-        font-size: 0.85rem;
-      }
+      .services-grid { grid-template-columns: 1fr; }
+      h2 { font-size: 1.8rem; }
+      .hero-content h1 { font-size: 2rem; }
+      .hero-image-col img { max-width: 220px; }
+      .whatsapp-float { width: 50px; height: 50px; font-size: 1.8rem; bottom: 20px; right: 20px; }
+      .chat-float { width: 50px; height: 50px; font-size: 1.8rem; bottom: 20px; left: 20px; }
+      .project-card { flex: 0 0 260px; padding: 1.2rem; }
+      .portfolio-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
     }
-
     @media screen and (max-width: 400px) {
-      .reviews-grid,
-      .top-projects-grid,
-      .pricing-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .review-card,
-      .top-project-card,
-      .pricing-card {
-        padding: 1.2rem;
-      }
-      
-      .pricing-card .price {
-        font-size: 2rem;
-      }
-      
-      .pricing-card ul {
-        font-size: 0.9rem;
-      }
-      
-      .payment-modal-content {
-        padding: 1.5rem;
-      }
-      
-      .payment-left h3,
-      .payment-right h3 {
-        font-size: 1.5rem;
-      }
-      
-      .wa-link {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-      }
+      .reviews-grid, .top-projects-grid, .pricing-grid { grid-template-columns: 1fr; }
+      .chat-window { width: 260px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ========== TOP TICKER ========== -->
 <div class="ticker-wrap">
   <div class="ticker">
     <span class="ticker-item"><i class="fas fa-star"></i> Trusted By NG Creatives</span>
     <span class="ticker-item"><i class="fas fa-phone-alt"></i> Contact now +92345-8740419</span>
     <span class="ticker-item"><i class="fas fa-chart-line"></i> Grow your business with our expert's strategies</span>
     <span class="ticker-item"><i class="fas fa-rocket"></i> NG Creatives! We build you Grow.</span>
-    <span class="ticker-item"><i class="fas fa-camera"></i> Send Payment Screenshot & Confirm Order !!.</span>
-    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item"><i class="fas fa-camera"></i> Send Payment Screenshot &amp; Confirm Order!</span>
     <span class="ticker-item"><i class="fas fa-star"></i> Trusted By NG Creatives</span>
     <span class="ticker-item"><i class="fas fa-phone-alt"></i> Contact now +92345-8740419</span>
     <span class="ticker-item"><i class="fas fa-chart-line"></i> Grow your business with our expert's strategies</span>
     <span class="ticker-item"><i class="fas fa-rocket"></i> NG Creatives! We build you Grow.</span>
-    <span class="ticker-item"><i class="fas fa-camera"></i> Send Payment Screenshot & Confirm Order !!.</span>
+    <span class="ticker-item"><i class="fas fa-camera"></i> Send Payment Screenshot &amp; Confirm Order!</span>
   </div>
 </div>
 
-<!-- ========== FLOATING WHATSAPP BUTTON ========== -->
-<a href="https://wa.me/923458740419?text=Hi%20Saad%2C%20I%20want%20to%20work%20with%20you.%20Can%20you%20help%20me%20grow%20my%20business%3F" class="whatsapp-float" target="_blank">
-  <i class="fab fa-whatsapp"></i>
-</a>
+<a href="https://wa.me/923458740419?text=Hi%20Saad%2C%20I%20want%20to%20work%20with%20you." class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-<!-- ========== STICKY HEADER ========== -->
+<div class="chat-float" id="chatButton"><i class="fas fa-robot"></i></div>
+
+<!-- CHAT WINDOW -->
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <h4><i class="fas fa-robot" style="margin-right:0.5rem;"></i> NG AI Assistant</h4>
+    <i class="fas fa-times" id="closeChat"></i>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="message bot">Assalam o Alaikum! 👋 Main NG AI hoon. Services, pricing, ya kuch bhi poochein!</div>
+  </div>
+  <div class="quick-replies">
+    <button class="qr-btn" onclick="sendQuick('Services kya hain?')">Services?</button>
+    <button class="qr-btn" onclick="sendQuick('Pricing plans batao')">Pricing?</button>
+    <button class="qr-btn" onclick="sendQuick('Free trial chahiye')">Free Trial?</button>
+    <button class="qr-btn" onclick="sendQuick('Contact info')">Contact?</button>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" id="chatInput" placeholder="Apna sawal likhein...">
+    <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+
+<!-- TRIAL MODAL -->
+<div id="trialModal" class="trial-modal">
+  <span class="trial-close" id="closeTrialModal">&times;</span>
+  <div class="trial-modal-content">
+    <h3>Free Trial Activate Karein</h3>
+    <form class="trial-form" id="trialForm">
+      <div class="form-group"><input type="text" id="trialName" name="Name" placeholder="Aapka Naam" required></div>
+      <div class="form-group"><input type="email" id="trialEmail" name="Email" placeholder="Aapki Email" required></div>
+      <div class="form-group"><input type="tel" id="trialPhone" name="Phone" placeholder="Phone Number (country code ke saath)" required></div>
+      <div class="form-group"><textarea id="trialDesc" name="Description" placeholder="Project ki tafseel / Requirements" required></textarea></div>
+      <button type="submit" id="trialSubmitBtn" class="submit-btn">Start 7-Day Trial 🚀</button>
+    </form>
+    <div id="trialThankyou" style="display:none;text-align:center;margin-top:20px;">
+      <i class="fas fa-check-circle" style="font-size:3rem;color:#4ade80;margin-bottom:1rem;display:block;"></i>
+      <p style="color:#4ade80;font-weight:bold;font-size:1.1rem;">Trial shuru ho gaya! 7 dinon mein hum aapse contact karenge. ✅</p>
+    </div>
+  </div>
+</div>
+
 <header>
   <div class="container header-wrapper">
-    <div class="logo">
-      <a href="#hero">NG<span>Creatives</span></a>
-    </div>
-    <!-- Hamburger icon (mobile) -->
-    <div class="menu-toggle" id="mobile-menu">
-      <i class="fas fa-bars"></i>
-    </div>
+    <div class="logo"><a href="#hero">NG<span>Creatives</span></a></div>
+    <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
     <ul class="nav-links" id="nav-menu">
       <li><a href="#hero">Home</a></li>
       <li><a href="#services">Services</a></li>
@@ -1481,161 +314,95 @@
 </header>
 
 <main>
-  <!-- ========== HERO / PROFILE SECTION WITH IMAGE ========== -->
   <section id="hero" class="hero fade-section container">
     <div class="hero-wrapper">
-      <!-- Left column: text -->
       <div class="hero-content">
-        <h1>
-          <span class="hero-highlight">Saad Rasheed</span><br>
-          UI/UX & Brand Designer
-        </h1>
-        <div class="hero-sub">Crafting digital experiences & visuals</div>
-        <p class="hero-text">
-          I design interfaces, build web & app prototypes, and create brand identities that connect. 
-          Let’s turn your idea into a memorable product.
-        </p>
-        <!-- Work with me button now opens WhatsApp with specific message -->
-        <a href="https://wa.me/923458740419?text=Hi%20Saad%2C%20I%20am%20Interested%20in%20your%20plan%20packages.%20Can%20we%20discuss%20on%20it%3F%3F" class="btn" target="_blank">Work with me</a>
+        <h1><span class="hero-highlight">Saad Rasheed</span><br>UI/UX &amp; Brand Designer</h1>
+        <div class="hero-sub">Crafting digital experiences &amp; visuals</div>
+        <p class="hero-text">I design interfaces, build web &amp; app prototypes, and create brand identities that connect. Let's turn your idea into a memorable product.</p>
+        <a href="https://wa.me/923458740419?text=Hi%20Saad%2C%20I%20am%20Interested%20in%20your%20plan%20packages." class="btn" target="_blank">Work with me</a>
       </div>
-      <!-- Right column: profile image -->
       <div class="hero-image-col">
-        <img 
-          src="saad 1.jpeg" 
-          alt="Saad Rasheed profile"
-          onerror="this.onerror=null; this.src='https://via.placeholder.com/400x400/1F2833/FBBF24?text=Saad+Rasheed';"
-        >
+        <img src="saad 1.jpeg" alt="Saad Rasheed" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x400/1F2833/FBBF24?text=Saad+Rasheed';">
       </div>
     </div>
   </section>
 
-  <!-- ========== SERVICES SECTION ========== -->
   <section id="services" class="fade-section container">
-    <h2>Services</h2>
-    <br>
+    <h2>Services</h2><br>
     <h4>Here are our Services:</h4>
     <div class="services-grid">
-      <!-- UI/UX Design -->
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
-        <h3>UI/UX Design</h3>
-        <p>Wireframes, prototypes, user flows, and high-fidelity screens for web & mobile.</p>
-      </div>
-      <!-- Web & App Development -->
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-code"></i></div>
-        <h3>Web & App Dev</h3>
-        <p>Responsive websites, PWA, and cross-platform mobile applications.</p>
-      </div>
-      <!-- Brand Visuals -->
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-camera-retro"></i></div>
-        <h3>Brand Visuals</h3>
-        <p>Logos, social media kits, packaging, and complete brand identity.</p>
-      </div>
-      <!-- Social Media Marketing -->
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-chart-line"></i></div>
-        <h3>Social Media</h3>
-        <p>Content creation, strategy, and ad designs for Instagram, TikTok, Snapchat.</p>
-      </div>
+      <div class="service-card"><div class="service-icon"><i class="fas fa-paint-brush"></i></div><h3>UI/UX Design</h3><p>Wireframes, prototypes, user flows, and high-fidelity screens for web &amp; mobile.</p></div>
+      <div class="service-card"><div class="service-icon"><i class="fas fa-code"></i></div><h3>Web &amp; App Dev</h3><p>Responsive websites, PWA, and cross-platform mobile applications.</p></div>
+      <div class="service-card"><div class="service-icon"><i class="fas fa-camera-retro"></i></div><h3>Brand Visuals</h3><p>Logos, social media kits, packaging, and complete brand identity.</p></div>
+      <div class="service-card"><div class="service-icon"><i class="fas fa-chart-line"></i></div><h3>Social Media</h3><p>Content creation, strategy, and ad designs for Instagram, TikTok, Snapchat.</p></div>
     </div>
-  </section>
-<br>
+  </section><br>
 
-  <!-- ========== CV / ABOUT SECTION ========== -->
   <section id="cv" class="fade-section container">
-    <h2>About & CV</h2>
+    <h2>About &amp; CV</h2>
     <div class="cv-content">
       <div class="cv-text">
         <h3>Saad Rasheed</h3>
-        <p style="font-size: 1.2rem; color: #FBBF24;">UI/UX & Brand Designer</p>
-        <p>
-          I’ve been designing digital products for 1+ years, collaborating with startups and agencies. 
-          My work focuses on clean aesthetics, smooth interactions, and business goals. 
-          This website itself is a part of my portfolio – designed and built from scratch to showcase my skills.
-        </p>
-        <br>
-        <p>Click on CV for full View</p>
+        <p style="font-size:1.2rem;color:#FBBF24;">UI/UX &amp; Brand Designer</p>
+        <p>I've been designing digital products for 1+ years, collaborating with startups and agencies. My work focuses on clean aesthetics, smooth interactions, and business goals.</p>
+        <br><p>Click on CV for full View</p>
       </div>
-      <div class="cv-image" id="cvImage">
-        <img src="cv 4.png" alt="CV preview">
-      </div>
+      <div class="cv-image" id="cvImage"><img src="cv 4.png" alt="CV preview"></div>
     </div>
-  </section>
-<br>
+  </section><br>
 
-  <!-- ========== PORTFOLIO CAROUSEL ========== -->
   <section id="portfolio" class="fade-section container">
     <div class="portfolio-header">
       <h2>Project Gallery</h2>
       <a href="#pricing" class="view-plans-link">View Plans →</a>
-    </div>
-    <br>
+    </div><br>
     <h4>Click on Project for full view</h4>
-    <!-- Carousel controls -->
     <div class="carousel-buttons">
       <div class="carousel-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></div>
       <div class="carousel-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></div>
     </div>
-    <!-- Carousel track -->
     <div class="carousel-container">
       <div class="portfolio-carousel" id="carouselTrack">
-        <!-- Project 1 -->
         <div class="project-card" data-project="1">
-          <div class="video-placeholder" data-video="uk.mp4">
-            <img src="ukthumb.png" alt="video thumbnail">
-            <i class="fas fa-play-circle"></i>
-          </div>
+          <div class="video-placeholder" data-video="uk.mp4"><img src="ukthumb.png" alt="thumb"><i class="fas fa-play-circle"></i></div>
           <div class="screenshot-grid">
-            <div class="screenshot"><img src="login.png" alt="screenshot" data-full="login.png"></div>
-            <div class="screenshot"><img src="sale.png" alt="screenshot" data-full="sale.png"></div>
-            <div class="screenshot"><img src="report.png" alt="screenshot" data-full="report.png"></div>
+            <div class="screenshot"><img src="login.png" data-full="login.png" alt="ss"></div>
+            <div class="screenshot"><img src="sale.png" data-full="sale.png" alt="ss"></div>
+            <div class="screenshot"><img src="report.png" data-full="report.png" alt="ss"></div>
           </div>
           <h3 class="project-title">UK Printer App</h3>
-          <p class="project-desc">Complete Mobile Application for UK Printer & Computer Bahawalpur with 15+ screens.</p>
+          <p class="project-desc">Complete Mobile Application for UK Printer &amp; Computer Bahawalpur with 15+ screens.</p>
           <a class="project-link">View Full project <i class="fas fa-arrow-right"></i></a>
         </div>
-        <!-- Project 2 -->
         <div class="project-card" data-project="2">
-          <div class="video-placeholder" data-video="h1.mp4">
-            <img src="hthumb.png" alt="video thumbnail">
-            <i class="fas fa-play-circle"></i>
-          </div>
+          <div class="video-placeholder" data-video="h1.mp4"><img src="hthumb.png" alt="thumb"><i class="fas fa-play-circle"></i></div>
           <div class="screenshot-grid">
-            <div class="screenshot"><img src="hstore.png" alt="screenshot" data-full="hstore.png"></div>
-            <div class="screenshot"><img src="hweb.png" alt="screenshot" data-full="hweb.png"></div>
-            <div class="screenshot"><img src="hpro.png" alt="screenshot" data-full="hpro.png"></div>
+            <div class="screenshot"><img src="hstore.png" data-full="hstore.png" alt="ss"></div>
+            <div class="screenshot"><img src="hweb.png" data-full="hweb.png" alt="ss"></div>
+            <div class="screenshot"><img src="hpro.png" data-full="hpro.png" alt="ss"></div>
           </div>
           <h3 class="project-title">HStores Website UI UX</h3>
           <p class="project-desc">Visual identity, packaging, and complete UI UX of a Website.</p>
           <a class="project-link">View Full project <i class="fas fa-arrow-right"></i></a>
         </div>
-        <!-- Project 3 -->
         <div class="project-card" data-project="3">
-          <div class="video-placeholder" data-video="z.mp4">
-            <img src="zthumb.png" alt="video thumbnail">
-            <i class="fas fa-play-circle"></i>
-          </div>
+          <div class="video-placeholder" data-video="z.mp4"><img src="zthumb.png" alt="thumb"><i class="fas fa-play-circle"></i></div>
           <div class="screenshot-grid">
-            <div class="screenshot"><img src="zelva.png" alt="screenshot" data-full="zelva.png"></div>
-            <div class="screenshot"><img src="schedule.png" alt="screenshot" data-full="schedule.png"></div>
-            <div class="screenshot"><img src="doctors.png" alt="screenshot" data-full="doctors.png"></div>
+            <div class="screenshot"><img src="zelva.png" data-full="zelva.png" alt="ss"></div>
+            <div class="screenshot"><img src="schedule.png" data-full="schedule.png" alt="ss"></div>
+            <div class="screenshot"><img src="doctors.png" data-full="doctors.png" alt="ss"></div>
           </div>
           <h3 class="project-title">Zelva Mobile App</h3>
-          <p class="project-desc">An app for Doctors & Salons to get Customers instantly.</p>
+          <p class="project-desc">An app for Doctors &amp; Salons to get Customers instantly.</p>
           <a class="project-link">View Full project <i class="fas fa-arrow-right"></i></a>
         </div>
-        <!-- Project 4 -->
         <div class="project-card" data-project="4">
-          <div class="video-placeholder" data-video="ad.mp4">
-            <img src="post.png" alt="video thumbnail">
-            <i class="fas fa-play-circle"></i>
-          </div>
+          <div class="video-placeholder" data-video="ad.mp4"><img src="post.png" alt="thumb"><i class="fas fa-play-circle"></i></div>
           <div class="screenshot-grid">
-            <div class="screenshot"><img src="ad.png" alt="screenshot" data-full="ad.png"></div>
-            <div class="screenshot"><img src="ad2.png" alt="screenshot" data-full="ad2.png"></div>
-            <div class="screenshot"><img src="ad3.png" alt="screenshot" data-full="ad3.png"></div>
+            <div class="screenshot"><img src="ad.png" data-full="ad.png" alt="ss"></div>
+            <div class="screenshot"><img src="ad2.png" data-full="ad2.png" alt="ss"></div>
+            <div class="screenshot"><img src="ad3.png" data-full="ad3.png" alt="ss"></div>
           </div>
           <h3 class="project-title">Premium Ad Post</h3>
           <p class="project-desc">Brand visuals, Brand identity and Brand Marketing.</p>
@@ -1643,370 +410,159 @@
         </div>
       </div>
     </div>
-    <p style="color:#C5C6C7; margin-top: 1rem; text-align: right;"><i>← swipe to browse projects →</i></p>
+    <p style="color:#C5C6C7;margin-top:1rem;text-align:right;"><i>← swipe to browse projects →</i></p>
   </section>
 
-  <!-- ========== REVIEWS SECTION ========== -->
   <section id="reviews" class="fade-section container">
     <h2>Client Reviews</h2>
     <div class="reviews-grid">
-      <!-- Review 1 -->
-      <div class="review-card">
-        <div class="review-header">
-          <div class="review-avatar">
-            <i class="fas fa-user"></i>
-          </div>
-          <div class="review-info">
-            <h4>Fayaz Bhatti</h4>
-            <p>UK Printer App</p>
-          </div>
-        </div>
-        <div class="review-text">
-          "Saad did an amazing job on our mobile app. The UI is clean and user-friendly. Highly recommended!"
-        </div>
-        <div class="review-rating">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
-      </div>
-      <!-- Review 2 -->
-      <div class="review-card">
-        <div class="review-header">
-          <div class="review-avatar">
-            <i class="fas fa-user"></i>
-          </div>
-          <div class="review-info">
-            <h4>Hasnain Mahmood</h4>
-            <p>HStores Website</p>
-          </div>
-        </div>
-        <div class="review-text">
-          "Great experience working with Saad. He understood our brand and delivered beyond expectations."
-        </div>
-        <div class="review-rating">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
-      </div>
-      <!-- Review 3 -->
-      <div class="review-card">
-        <div class="review-header">
-          <div class="review-avatar">
-            <i class="fas fa-user"></i>
-          </div>
-          <div class="review-info">
-            <h4>Dr. Zafar</h4>
-            <p>Zelva App</p>
-          </div>
-        </div>
-        <div class="review-text">
-          "The app has increased Customer engagement. Excellent work and timely delivery."
-        </div>
-        <div class="review-rating">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
-      </div>
-      <!-- Review 4 -->
-      <div class="review-card">
-        <div class="review-header">
-          <div class="review-avatar">
-            <i class="fas fa-user"></i>
-          </div>
-          <div class="review-info">
-            <h4>Marketing Pro</h4>
-            <p>Ad Campaigns</p>
-          </div>
-        </div>
-        <div class="review-text">
-          "Saad's social media posts and branding helped us attract more customers. Visit his Project Gallery. Highly skilled!"
-        </div>
-        <div class="review-rating">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
-      </div>
+      <div class="review-card"><div class="review-header"><div class="review-avatar"><i class="fas fa-user"></i></div><div class="review-info"><h4>Fayaz Bhatti</h4><p>UK Printer App</p></div></div><div class="review-text">"Saad did an amazing job on our mobile app. The UI is clean and user-friendly. Highly recommended!"</div><div class="review-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+      <div class="review-card"><div class="review-header"><div class="review-avatar"><i class="fas fa-user"></i></div><div class="review-info"><h4>Hasnain Mahmood</h4><p>HStores Website</p></div></div><div class="review-text">"Great experience working with Saad. He understood our brand and delivered beyond expectations."</div><div class="review-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+      <div class="review-card"><div class="review-header"><div class="review-avatar"><i class="fas fa-user"></i></div><div class="review-info"><h4>Dr. Zafar</h4><p>Zelva App</p></div></div><div class="review-text">"The app has increased Customer engagement. Excellent work and timely delivery."</div><div class="review-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+      <div class="review-card"><div class="review-header"><div class="review-avatar"><i class="fas fa-user"></i></div><div class="review-info"><h4>Marketing Pro</h4><p>Ad Campaigns</p></div></div><div class="review-text">"Saad's social media posts and branding helped us attract more customers. Highly skilled!"</div><div class="review-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
     </div>
   </section>
 
-  <!-- ========== TOP PROJECTS SECTION ========== -->
   <section id="top-projects" class="fade-section container">
     <h2>Top Projects</h2>
     <div class="top-projects-grid">
-      <!-- Project 1 -->
-      <div class="top-project-card">
-        <div class="top-project-icon"><i class="fas fa-mobile-alt"></i></div>
-        <h3>UK Printer App</h3>
-        <div class="top-project-tag">Mobile App</div>
-        <h3>Problem:</h3>
-        <p>Client needed bill management system for their employees.</p>
-        <h3>Solution:</h3>
-        <p>Built a role-friendly app with real-time bill tracking & management and sales reporting.</p>
-        <h3>Product:</h3>
-        <p>Flutter app with Firebase backend, 15+ screens, Developed for a Company staff (Over 10 members using this app at a time).</p>
-      </div>
-      <!-- Project 2 -->
-      <div class="top-project-card">
-        <div class="top-project-icon"><i class="fas fa-globe"></i></div>
-        <h3>HStores Website</h3>
-        <div class="top-project-tag">Web Design</div>
-        <h3>Problem:</h3>
-        <p>Looking for a traditional & trending website for my Chunri Collection.</p>
-        <h3>Solution:</h3>
-        <p>Designed UI/UX with modern aesthetics and clear CTAs.</p>
-        <h3>Product:</h3>
-        <p>Fully responsive website with 10+ pages, custom illustrations, and fast loading.</p>
-      </div>
-      <!-- Project 3 -->
-      <div class="top-project-card">
-        <div class="top-project-icon"><i class="fas fa-clinic-medical"></i></div>
-        <h3>Zelva App</h3>
-        <div class="top-project-tag">UI/UX Design</div>
-        <h3>Problem:</h3>
-        <p>Doctors & Salons needed a platform to connect with patients/customers.</p>
-        <h3>Solution:</h3>
-        <p>Developed an appointment booking app with real-time chat and notifications.</p>
-        <h3>Product:</h3>
-        <p>React Native app , 40+ screens, integrated with WhatsApp API.</p>
-      </div>
+      <div class="top-project-card"><div class="top-project-icon"><i class="fas fa-mobile-alt"></i></div><h3>UK Printer App</h3><div class="top-project-tag">Mobile App</div><h3>Problem:</h3><p>Client needed bill management system for their employees.</p><h3>Solution:</h3><p>Built a role-friendly app with real-time bill tracking &amp; management and sales reporting.</p><h3>Product:</h3><p>Flutter app with Firebase backend, 15+ screens, for 10+ staff members.</p></div>
+      <div class="top-project-card"><div class="top-project-icon"><i class="fas fa-globe"></i></div><h3>HStores Website</h3><div class="top-project-tag">Web Design</div><h3>Problem:</h3><p>Looking for a traditional &amp; trending website for my Chunri Collection.</p><h3>Solution:</h3><p>Designed UI/UX with modern aesthetics and clear CTAs.</p><h3>Product:</h3><p>Fully responsive website with 10+ pages, custom illustrations, and fast loading.</p></div>
+      <div class="top-project-card"><div class="top-project-icon"><i class="fas fa-clinic-medical"></i></div><h3>Zelva App</h3><div class="top-project-tag">UI/UX Design</div><h3>Problem:</h3><p>Doctors &amp; Salons needed a platform to connect with patients/customers.</p><h3>Solution:</h3><p>Developed an appointment booking app with real-time chat and notifications.</p><h3>Product:</h3><p>React Native app, 40+ screens, integrated with WhatsApp API.</p></div>
     </div>
   </section>
 
-  <!-- ========== PRICING SECTION ========== -->
   <section id="pricing" class="fade-section container">
-    <h2>Pricing Plans</h2>
-    <br>
+    <h2>Pricing Plans</h2><br>
     <h4>We recommend the Custom Plan for your project</h4>
     <div class="pricing-grid">
-      <!-- Standard Plan -->
       <div class="pricing-card">
-        <h3>Standard</h3>
-        <div class="starting-from">Starting from</div>
-        <div class="price">$20 <span>/ project</span></div>
+        <h3>Standard</h3><div class="starting-from">Starting from</div><div class="price">$20 <span>/ project</span></div>
         <ul>
           <li><i class="fas fa-check-circle"></i> Complete Brand Kit (Logo + Banner)</li>
           <li><i class="fas fa-check-circle"></i> 1 Social Media Post Design</li>
           <li><i class="fas fa-check-circle"></i> Basic UI/UX Wireframe</li>
-          <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Brand Identity </li>
-          <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> App Development</li>
-          <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Web/App Development</li>
-          <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Support & Consultation</li>
-          <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Advanced Prototyping</li>
+          <li><i class="fas fa-times-circle" style="color:#6B7280;"></i> Brand Identity</li>
+          <li><i class="fas fa-times-circle" style="color:#6B7280;"></i> App Development</li>
+          <li><i class="fas fa-times-circle" style="color:#6B7280;"></i> Web/App Development</li>
+          <li><i class="fas fa-times-circle" style="color:#6B7280;"></i> Support &amp; Consultation</li>
+          <li><i class="fas fa-times-circle" style="color:#6B7280;"></i> Advanced Prototyping</li>
         </ul>
-        <a href="#" class="btn select-plan" data-plan="Standard" data-price="10">Select Standard</a>
+        <a href="#" class="btn select-plan" data-plan="Standard" data-price="20">Select Standard</a>
       </div>
-      <!-- Intermediate Plan (featured) -->
       <div class="pricing-card featured">
-        <h3>Intermediate</h3>
-        <div class="starting-from">Starting from</div>
-        <div class="price">$30 <span>/ project</span></div>
+        <h3>Intermediate</h3><div class="starting-from">Starting from</div><div class="price">$30 <span>/ project</span></div>
         <ul>
           <li><i class="fas fa-check-circle"></i> All in Standard Plan</li>
-          <li><i class="fas fa-check-circle"></i> Complete Brand Identity (Logo, Graphics, Banner)</li>
+          <li><i class="fas fa-check-circle"></i> Complete Brand Identity</li>
           <li><i class="fas fa-check-circle"></i> 3 Video Ads</li>
-          <li><i class="fas fa-check-circle"></i> 3 Premium Social Media Post Designs</li>
-          <li><i class="fas fa-check-circle"></i> Intermediate UI/UX Design (up to 10 screens)</li>
-          <li><i class="fas fa-check-circle"></i> Basic Website/App Development (3 pages)</li>
-          <li><i class="fas fa-times-circle" style="color: #6B7280;"></i> Advanced Development</li>
+          <li><i class="fas fa-check-circle"></i> 3 Premium Social Media Posts</li>
+          <li><i class="fas fa-check-circle"></i> Intermediate UI/UX (up to 10 screens)</li>
+          <li><i class="fas fa-check-circle"></i> Basic Website/App Dev (3 pages)</li>
+          <li><i class="fas fa-times-circle" style="color:#6B7280;"></i> Advanced Development</li>
         </ul>
-        <a href="#" class="btn select-plan" data-plan="Intermediate" data-price="15">Select Intermediate</a>
+        <a href="#" class="btn select-plan" data-plan="Intermediate" data-price="30">Select Intermediate</a>
       </div>
-      <!-- Premium Plan -->
       <div class="pricing-card">
-        <h3>Premium</h3>
-        <div class="starting-from">Starting from</div>
-        <div class="price">$50 <span>/ project</span></div>
+        <h3>Premium</h3><div class="starting-from">Starting from</div><div class="price">$50 <span>/ project</span></div>
         <ul>
           <li><i class="fas fa-check-circle"></i> All in Intermediate Plan</li>
-          <li><i class="fas fa-check-circle"></i> Complete Brand Identity </li>
-          <li><i class="fas fa-check-circle"></i> 10+ Social Media Post Designs</li>
+          <li><i class="fas fa-check-circle"></i> Complete Brand Identity</li>
+          <li><i class="fas fa-check-circle"></i> 10+ Social Media Posts</li>
           <li><i class="fas fa-check-circle"></i> 10 Video Ads</li>
           <li><i class="fas fa-check-circle"></i> Advanced UI/UX (25 screens)</li>
-          <li><i class="fas fa-check-circle"></i> Full Custom Code Web/App Development</li>
-          <li><i class="fas fa-check-circle"></i> Priority 24/7 Support & Consultation</li>
+          <li><i class="fas fa-check-circle"></i> Full Custom Web/App Development</li>
+          <li><i class="fas fa-check-circle"></i> Priority 24/7 Support</li>
         </ul>
-        <a href="#" class="btn select-plan" data-plan="Premium" data-price="25">Select Premium</a>
+        <a href="#" class="btn select-plan" data-plan="Premium" data-price="50">Select Premium</a>
       </div>
-
-      <!-- CUSTOM PLAN with checkboxes -->
       <div class="pricing-card" id="customPlan">
-        <h3>Custom Plan</h3>
-        <div class="starting-from">Build your own</div>
+        <h3>Custom Plan</h3><div class="starting-from">Build your own</div>
         <div class="custom-total" id="customTotal">$0</div>
-        <div style="text-align: left; margin: 1rem 0;">
-          <div class="custom-option">
-            <input type="checkbox" id="opt1" value="20" onchange="updateCustomTotal()">
-            <label for="opt1">Logo Design (+$20)</label>
-          </div>
-          <div class="custom-option">
-            <input type="checkbox" id="opt2" value="50" onchange="updateCustomTotal()">
-            <label for="opt2">Complete Brand Identity (+$50)</label>
-          </div>
-          <div class="custom-option">
-            <input type="checkbox" id="opt3" value="10" onchange="updateCustomTotal()">
-            <label for="opt3">Social Media Post (per post) (+$10)</label>
-          </div>
-          <div class="custom-option">
-            <input type="checkbox" id="opt4" value="15" onchange="updateCustomTotal()">
-            <label for="opt4">UI/UX Design (per screen) (+$10)</label>
-          </div>
-          <div class="custom-option">
-            <input type="checkbox" id="opt5" value="30" onchange="updateCustomTotal()">
-            <label for="opt5">Web/App Development (per page) (+$30)</label>
-          </div>
-          <div class="custom-option">
-            <input type="checkbox" id="opt6" value="25" onchange="updateCustomTotal()">
-            <label for="opt6">Priority Consultation (+$25)</label>
-          </div>
+        <div style="text-align:left;margin:1rem 0;">
+          <div class="custom-option"><input type="checkbox" id="opt1" value="20" onchange="updateCustomTotal()"><label for="opt1">Logo Design (+$20)</label></div>
+          <div class="custom-option"><input type="checkbox" id="opt2" value="50" onchange="updateCustomTotal()"><label for="opt2">Complete Brand Identity (+$50)</label></div>
+          <div class="custom-option"><input type="checkbox" id="opt3" value="10" onchange="updateCustomTotal()"><label for="opt3">Social Media Post (+$10)</label></div>
+          <div class="custom-option"><input type="checkbox" id="opt4" value="10" onchange="updateCustomTotal()"><label for="opt4">UI/UX per screen (+$10)</label></div>
+          <div class="custom-option"><input type="checkbox" id="opt5" value="30" onchange="updateCustomTotal()"><label for="opt5">Web/App per page (+$30)</label></div>
+          <div class="custom-option"><input type="checkbox" id="opt6" value="25" onchange="updateCustomTotal()"><label for="opt6">Priority Consultation (+$25)</label></div>
         </div>
-        <a href="#" class="btn" onclick="sendCustomPlan(); return false;">Request Custom</a>
+        <a href="#" class="btn" onclick="sendCustomPlan();return false;">Request Custom</a>
       </div>
     </div>
-
-    <!-- Funnel Link: Chat with me -->
-    <div style="text-align: center; margin-top: 2rem;">
-      <p style="color: #C5C6C7;">Want some discussion? <a href="https://wa.me/923458740419?text=Hi%20Saad%2C%20I%20want%20to%20discuss%20my%20project%20requirements." target="_blank" style="color: #FBBF24; font-weight: 600; text-decoration: underline;">Chat with us</a></p>
+    <div style="text-align:center;margin-top:2rem;">
+      <p style="color:#C5C6C7;">Want some discussion? <a href="https://wa.me/923458740419?text=Hi%20Saad%2C%20I%20want%20to%20discuss%20my%20project." target="_blank" style="color:#FBBF24;font-weight:600;text-decoration:underline;">Chat with us</a></p>
+      <p style="color:#C5C6C7;margin-top:0.5rem;"><a href="#" id="trialLink" style="color:#FBBF24;font-weight:600;text-decoration:underline;">Start free trial? Click here</a></p>
     </div>
   </section>
 
-  <!-- ========== FAQ SECTION ========== -->
   <section id="faq" class="fade-section container">
     <h2>Frequently Asked Questions</h2>
     <div class="faq-container">
-      <!-- FAQ 1 -->
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>What services do you offer?</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-          I offer UI/UX design, web & app development, brand identity creation, and social media marketing services.
-        </div>
-      </div>
-      <!-- FAQ 2 -->
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>How long does a typical project take?</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-          Project timelines vary based on complexity. A simple branding project might take 3-5 days, while a full app can take 2-4 weeks.
-        </div>
-      </div>
-      <!-- FAQ 3 -->
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>Do you offer revisions?</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-          Yes, revisions are included in all plans. The number of revisions depends on the plan you choose.
-        </div>
-      </div>
-      <!-- FAQ 4 -->
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>What payment methods do you accept?</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-          I accept JazzCash, EasyPaisa, and Credit/Debit cards. All payments are processed securely.
-        </div>
-      </div>
-      <!-- FAQ 5 -->
-      <div class="faq-item">
-        <div class="faq-question">
-          <span>Can I get a custom quote for my project?</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer">
-          Absolutely! Use the Custom Plan builder above or contact me directly for a personalized quote.
-        </div>
-      </div>
+      <div class="faq-item"><div class="faq-question"><span>What services do you offer?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">I offer UI/UX design, web &amp; app development, brand identity creation, and social media marketing services.</div></div>
+      <div class="faq-item"><div class="faq-question"><span>How long does a typical project take?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">Project timelines vary based on complexity. A simple branding project might take 3-5 days, while a full app can take 2-4 weeks.</div></div>
+      <div class="faq-item"><div class="faq-question"><span>Do you offer revisions?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes, revisions are included in all plans. The number of revisions depends on the plan you choose.</div></div>
+      <div class="faq-item"><div class="faq-question"><span>What payment methods do you accept?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">I accept JazzCash, EasyPaisa, and Credit/Debit cards. All payments are processed securely.</div></div>
+      <div class="faq-item"><div class="faq-question"><span>Can I get a custom quote for my project?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">Absolutely! Use the Custom Plan builder above or contact me directly for a personalized quote.</div></div>
     </div>
   </section>
 
-  <!-- ========== CONTACT SECTION ========== -->
   <section id="contact" class="fade-section container">
     <h2>Contact</h2>
     <div class="contact-grid">
-      <!-- Left: email, phone, social -->
       <div class="contact-info">
         <div class="contact-item">
           <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-          <div class="contact-detail">
-            <p>Email</p>
-            <a href="mailto:saadrasheedpersonal@gmail.com">saadrasheedpersonal@gmail.com</a>
-          </div>
+          <div class="contact-detail"><p>Email</p><a href="mailto:saadrasheedpersonal@gmail.com">saadrasheedpersonal@gmail.com</a></div>
         </div>
         <div class="contact-item">
           <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
-          <div class="contact-detail">
-            <p>WhatsApp / Phone</p>
-            <a href="https://wa.me/923458740419?text=Hi%20Saad%2C%20I%20want%20to%20work%20with%20you,%20Can%20you%20help%20me%20to%20growing%20my%20Business." target="_blank">
-              +92 345-8740419
-            </a>
-          </div>
+          <div class="contact-detail"><p>WhatsApp / Phone</p><a href="https://wa.me/923458740419" target="_blank">+92 345-8740419</a></div>
         </div>
-        <div style="margin-top: 2rem;">
-          <p style="color:#C5C6C7; margin-bottom: 0.8rem;">Find me on social</p>
+        <div style="margin-top:2rem;">
+          <p style="color:#C5C6C7;margin-bottom:0.8rem;">Find me on social</p>
           <div class="social-links">
             <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://wa.me/923458740419?text=Hi%20Saad%2C%20I%20want%20to%20work%20with%20you.%20Can%20you%20help%20me%20grow%20my%20business%3F" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://wa.me/923458740419" target="_blank"><i class="fab fa-whatsapp"></i></a>
             <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
           </div>
         </div>
       </div>
-      <!-- Right: contact form -->
-      <div class="contact-form">
-        <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">Send a Message</h3>
-        <form action="https://formsubmit.co/saadrasheedpersonal@gmail.com" method="POST">
-          <!-- honeypot spam protection -->
-          <input type="text" name="_honey" style="display:none">
-          <!-- disable captcha (optional) -->
-          <input type="hidden" name="_captcha" value="false">
-          <!-- redirect to same page after submission -->
-          <input type="hidden" name="_next" value="">
-          <div class="form-group">
-            <input type="text" name="name" placeholder="Your Name" required>
+      <!-- ✅ CONTACT FORM — Google Sheet ko bhejta hai, koi error nahi dikhata -->
+      <div>
+        <h3 style="font-size:1.8rem;margin-bottom:1rem;">Send a Message</h3>
+        <div class="contact-form-wrapper">
+          <div class="form-group"><input type="text" id="cName" placeholder="Your Name" required></div>
+          <div class="form-group"><input type="email" id="cEmail" placeholder="Your Email" required></div>
+          <div class="form-group"><input type="text" id="cPhone" placeholder="WhatsApp Number (with country code)" required></div>
+          <div class="form-group"><textarea id="cMsg" placeholder="Your Message / Project Details" required></textarea></div>
+          <button class="submit-btn" id="contactBtn" onclick="submitContact()">Send Message</button>
+          <div id="contactDone" style="display:none;color:#4ade80;font-weight:600;text-align:center;padding:0.8rem;background:rgba(74,222,128,0.1);border-radius:12px;border:1px solid #4ade80;">
+            <i class="fas fa-check-circle"></i> Message bhej diya! Hum 24 ghante mein aapse contact karenge. ✅
           </div>
-          <div class="form-group">
-            <input type="email" name="email" placeholder="Your Email" required>
-          </div>
-          <div class="form-group">
-            <input type="text" name="whatsapp" placeholder="WhatsApp Number (with country code)" required>
-          </div>
-          <div class="form-group">
-            <textarea name="message" placeholder="Your Message / Project Details" required></textarea>
-          </div>
-          <button type="submit">Send Message</button>
-        </form>
-        <p style="color:#C5C6C7; font-size:0.9rem; margin-top:1rem;">I'll get back to you within 24h.</p>
+        </div>
+        <p style="color:#C5C6C7;font-size:0.9rem;margin-top:1rem;">I'll get back to you within 24h.</p>
       </div>
     </div>
   </section>
 </main>
-<br>
-<br>
-<!-- ========== FOOTER ========== -->
+<br><br>
+
 <footer>
   <div class="container footer-content">
     <div class="footer-links">
-      <a href="#hero">Home</a>
-      <a href="#services">Services</a>
-      <a href="#cv">CV</a>
-      <a href="#portfolio">Project Gallery</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#top-projects">Top Projects</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">Contact</a>
+      <a href="#hero">Home</a><a href="#services">Services</a><a href="#cv">CV</a>
+      <a href="#portfolio">Project Gallery</a><a href="#reviews">Reviews</a>
+      <a href="#top-projects">Top Projects</a><a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a><a href="#contact">Contact</a>
     </div>
-    <div style="color: #C5C6C7;">
-      © 2026 NGCreatives – Designed & built by Saad Rasheed
-    </div>
+    <div style="color:#C5C6C7;">© 2026 NGCreatives – Designed &amp; built by Saad Rasheed</div>
   </div>
 </footer>
 
-<!-- ========== SIMPLE PAYMENT POPUP ========== -->
+<!-- PAYMENT MODAL -->
 <div id="paymentModal" class="payment-modal">
   <span class="payment-close" id="closePaymentModal">&times;</span>
   <div class="payment-modal-content">
@@ -2017,26 +573,26 @@
         <p><i class="fas fa-mobile-alt"></i> <strong>EasyPaisa:</strong> 0345-8740419</p>
         <p><i class="fab fa-cc-visa"></i> <strong>Card:</strong> (upon request)</p>
       </div>
-      <p style="color:#FBBF24; font-size:1.2rem; margin-top:1rem;">Amount: <span id="popupAmount">$10</span></p>
+      <p style="color:#FBBF24;font-size:1.2rem;margin-top:1rem;">Amount: <span id="popupAmount">$20</span></p>
       <p style="color:#EDEDED;">Plan: <span id="popupPlan">Standard</span></p>
     </div>
     <div class="payment-right">
       <h3>How to Proceed</h3>
       <ul class="guidance-list">
-        <li><i class="fas fa-check-circle"></i> Send the exact amount to any of the accounts on the left.</li>
-        <li><i class="fas fa-check-circle"></i> Take a screenshot of the transaction or save the receipt.</li>
-        <li><i class="fas fa-check-circle"></i> Send the screenshot on WhatsApp using the button below.</li>
-        <li><i class="fas fa-check-circle"></i> Our team will contact you within 24 hours to start your project.</li>
+        <li><i class="fas fa-check-circle"></i> Send the exact amount to any account on the left.</li>
+        <li><i class="fas fa-check-circle"></i> Take a screenshot of the transaction.</li>
+        <li><i class="fas fa-check-circle"></i> Send screenshot on WhatsApp using the button below.</li>
+        <li><i class="fas fa-check-circle"></i> We'll contact you within 24 hours to start your project.</li>
       </ul>
       <a href="#" id="paymentWALink" class="wa-link" target="_blank"><i class="fab fa-whatsapp"></i> Send Screenshot on WhatsApp</a>
     </div>
   </div>
 </div>
 
-<!-- Project detail modal -->
+<!-- PROJECT MODAL -->
 <div id="projectModal" class="modal">
   <span class="modal-close" id="closeProjectModal">&times;</span>
-  <div class="modal-content" id="projectModalContent">
+  <div class="modal-content">
     <video id="modalVideo" controls></video>
     <h3 class="modal-title" id="modalTitle"></h3>
     <p class="modal-desc" id="modalDesc"></p>
@@ -2044,301 +600,292 @@
   </div>
 </div>
 
-<!-- Image lightbox modal -->
+<!-- IMAGE LIGHTBOX -->
 <div id="imageLightbox" class="image-lightbox">
   <span class="close" id="closeLightbox">&times;</span>
   <img id="lightboxImg" src="" alt="">
 </div>
 
-<!-- ========== JAVASCRIPT ========== -->
 <script>
-  (function() {
-    "use strict";
+// =============================================
+// ✅ GOOGLE SHEET URL — Dono forms yahan jayengi
+// Google Apps Script mein yeh code daalna zaroori hai:
+/*
+function doPost(e) {
+  var ss = SpreadsheetApp.openById('YOUR_SHEET_ID');
+  var source = e.parameter.Source || 'Unknown';
+  var sheetName = source === 'Trial' ? 'Trial Forms' : 'Contact Forms';
+  var sheet = ss.getSheetByName(sheetName) || ss.insertSheet(sheetName);
+  if (source === 'Trial') {
+    sheet.appendRow([new Date(), e.parameter.Name, e.parameter.Email, e.parameter.Phone, e.parameter.Description]);
+  } else {
+    sheet.appendRow([new Date(), e.parameter.Name, e.parameter.Email, e.parameter.Phone, e.parameter.Message]);
+  }
+  return ContentService.createTextOutput('Success').setMimeType(ContentService.MimeType.TEXT);
+}
+*/
+// =============================================
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxvaIgJtk2EAgD9En3yzuIcf2mWFyb9sEfGThc7yYZ5lBow3FV761zBacwwJ7iZJgwx/exec';
 
-    // ---------- 1. FADE-IN ON SCROLL ----------
-    const fadeSections = document.querySelectorAll('.fade-section');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.2 });
-    fadeSections.forEach(section => observer.observe(section));
+// ---- Helper: Silent send (no errors ever shown) ----
+function silentSend(params, onDone) {
+  fetch(SHEET_URL, { method: 'POST', body: new URLSearchParams(params) })
+    .catch(() => {}) // Silently ignore all errors
+    .finally(() => { if (onDone) onDone(); });
+}
 
-    // ---------- 2. MOBILE MENU ----------
-    const menuToggle = document.getElementById('mobile-menu');
-    const navMenu = document.getElementById('nav-menu');
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
+// =============================================
+// ✅ CONTACT FORM
+// =============================================
+function submitContact() {
+  const name = document.getElementById('cName').value.trim();
+  const email = document.getElementById('cEmail').value.trim();
+  const phone = document.getElementById('cPhone').value.trim();
+  const msg = document.getElementById('cMsg').value.trim();
+  if (!name || !email || !phone || !msg) { alert('Please fill all fields!'); return; }
+
+  const btn = document.getElementById('contactBtn');
+  btn.innerText = 'Sending...';
+  btn.disabled = true;
+
+  silentSend({ Source: 'Contact', Name: name, Email: email, Phone: phone, Message: msg }, () => {
+    document.getElementById('cName').value = '';
+    document.getElementById('cEmail').value = '';
+    document.getElementById('cPhone').value = '';
+    document.getElementById('cMsg').value = '';
+    document.getElementById('contactDone').style.display = 'block';
+    btn.innerText = 'Send Message';
+    btn.disabled = false;
+  });
+}
+
+// =============================================
+// ✅ TRIAL FORM
+// =============================================
+document.getElementById('trialForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('trialName').value.trim();
+  const email = document.getElementById('trialEmail').value.trim();
+  const phone = document.getElementById('trialPhone').value.trim();
+  const desc = document.getElementById('trialDesc').value.trim();
+  if (!name || !email || !phone || !desc) return;
+
+  const btn = document.getElementById('trialSubmitBtn');
+  btn.innerText = 'Processing...';
+  btn.disabled = true;
+
+  silentSend({ Source: 'Trial', Name: name, Email: email, Phone: phone, Description: desc }, () => {
+    document.getElementById('trialForm').style.display = 'none';
+    document.getElementById('trialThankyou').style.display = 'block';
+    btn.innerText = 'Start 7-Day Trial 🚀';
+    btn.disabled = false;
+  });
+});
+
+// =============================================
+// ✅ OFFLINE AI CHATBOT — 15 Q&A pairs
+// =============================================
+const chatKB = [
+  { keys: ['hi','hello','salam','hey','assalam','aoa','helo','السلام'],
+    ans: 'Walaikum Assalam! 👋 Main NG AI hoon — NGCreatives ka virtual assistant. Services, pricing, projects, ya kuch bhi poochein! 😊' },
+  { keys: ['service','kya karte','offer','kaam','services','kya krte','kya ho'],
+    ans: '🎨 Hamaari 4 main services hain:\n1. UI/UX Design — wireframes, prototypes, screens\n2. Web & App Development — responsive sites & mobile apps\n3. Brand Visuals — logos, identity, packaging\n4. Social Media Marketing — posts, reels, ads\n\nKaunsi service ke baare mein aur jaanna chahte hain?' },
+  { keys: ['price','pricing','cost','kitna','rate','plan','packages','standard','intermediate','premium','fee','charges'],
+    ans: '💰 Hamare Plans:\n• Standard — $20 (Logo + Banner + 1 Post + Wireframe)\n• Intermediate — $30 (Brand Identity + 3 Ads + 10-screen UI + 3 pages dev)\n• Premium — $50 (Full Package — 25 screens + unlimited dev + 24/7 support)\n• Custom — Apni marzi se choose karein!\n\nKaunsa plan aapke project ke liye best lagta hai?' },
+  { keys: ['contact','phone','whatsapp','number','email','reach','mil','baat'],
+    ans: '📞 Hamaari Contact Info:\n• WhatsApp: +92 345-8740419\n• Email: saadrasheedpersonal@gmail.com\n\nPage ke neeche-daayein WhatsApp button se seedha message kar sakte hain! 💬' },
+  { keys: ['trial','free','7 day','test','sample','try','azmai'],
+    ans: '🎁 Bilkul! Hum 7-day FREE Trial offer karte hain.\nBas Pricing section mein jayen aur "Start free trial?" link par click karein.\nForm fill karein — koi payment nahi, bilkul free! ✅' },
+  { keys: ['time','kitna time','deadline','kitne din','delivery','duration','jaldi','fast','urgent'],
+    ans: '⏱️ Kaam ki timelines:\n• Logo/Branding: 1-3 din\n• Social Media Post: 1-2 din\n• Website UI/UX: 5-10 din\n• Full App Development: 2-4 hafte\n\nUrgent kaam ke liye WhatsApp par baat karein: +92 345-8740419' },
+  { keys: ['revision','changes','edit','modify','wapas','badal','update'],
+    ans: '✏️ Haan! Har plan mein revisions shamil hain:\n• Standard: 2 revisions\n• Intermediate: 3 revisions\n• Premium: Unlimited revisions\n\nAapki satisfaction hamari 1st priority hai! 💯' },
+  { keys: ['payment','jazzcash','easypaisa','card','pay','kaise pay','bank','transfer','rupee','dollar'],
+    ans: '💳 Payment Methods:\n• JazzCash: 0345-8740419\n• EasyPaisa: 0345-8740419\n• Debit/Credit Card: upon request\n\nPayment ke baad screenshot WhatsApp par bhejen — order confirm ho jayega!' },
+  { keys: ['custom','apni marzi','choose','khud','mix','combine'],
+    ans: '⚙️ Custom Plan available hai! Pricing section mein jayen:\n• Logo Design: +$20\n• Complete Brand Identity: +$50\n• Social Media Post (per): +$10\n• UI/UX per screen: +$10\n• Web/App per page: +$30\n• Priority Consultation: +$25\n\nCheckbox select karein — total automatic calculate hoga!' },
+  { keys: ['portfolio','project','previous','past','example','kaam','gallery','dekh','screen'],
+    ans: '🖼️ Hamare Top Projects:\n1. UK Printer App — Flutter, Firebase, 15+ screens\n2. HStores Website — E-commerce UI/UX, 10+ pages\n3. Zelva App — Doctor & Salon booking, 40+ screens\n4. Premium Ad Posts — Brand marketing visuals\n\n"Project Gallery" section mein videos & screenshots dekhein!' },
+  { keys: ['logo','brand','identity','branding','mark'],
+    ans: '🎨 Brand Identity Package mein shamil hai:\n• Logo (multiple variants)\n• Business Card design\n• Social Media Kit\n• Brand Color Palette\n• Typography Guide\n\nLogo alag: +$20 | Complete Identity: +$50' },
+  { keys: ['website','web','site','develop','page','html'],
+    ans: '💻 Web Development:\n• Fully responsive & mobile-friendly\n• E-commerce & portfolio sites\n• Landing pages\n• CMS integration\n\nIntermediate plan: 3 pages | Premium: Full custom development!' },
+  { keys: ['app','mobile','flutter','react','android','ios','application'],
+    ans: '📱 Mobile App Development:\n• Flutter (Android + iOS dono)\n• React Native\n• UI/UX + Development\n\nUK Printer App (15 screens) & Zelva App (40 screens) hamari best examples hain! Pricing se detail lein.' },
+  { keys: ['social media','instagram','tiktok','facebook','post','content','reel','ad','video'],
+    ans: '📲 Social Media Services:\n• Premium post designs\n• Short video / Reel ads\n• Story templates\n• Ad campaigns (Meta, TikTok)\n\nIntermediate: 3 posts + 3 video ads\nPremium: 10 posts + 10 video ads' },
+  { keys: ['discount','offer','cheap','affordable','sasta','negotiate','kam price','budget'],
+    ans: '🤝 Hum budget-friendly hain! Custom Plan se aap sirf wohi lo jo chahiye.\nZyada kaam ke liye extra discount bhi milta hai.\n\nWhatsApp par baat karein: +92 345-8740419 — hum zaroor kuch karenge! 😊' },
+  { keys: ['saad','designer','kaun','about','experience','background','founder','owner'],
+    ans: '👨‍💻 Saad Rasheed — UI/UX & Brand Designer\n• 1+ saal ka experience\n• Startups & agencies ke saath kaam\n• Top projects: UK App, HStores, Zelva\n• NGCreatives ke founder\n\nCV section mein poori details dekhein!' }
+];
+
+const defaultBotReply = "Hmm, mujhe yeh samajh nahi aaya 🤔\n\nAap yeh pooch sakte hain:\n• Services?\n• Pricing plans?\n• Free trial?\n• Contact info?\n• Projects?\n\nYa seedha WhatsApp karein: +92 345-8740419 💬";
+
+function getBotReply(msg) {
+  const lower = msg.toLowerCase();
+  for (const qa of chatKB) {
+    if (qa.keys.some(k => lower.includes(k))) return qa.ans;
+  }
+  return defaultBotReply;
+}
+
+function addMsg(text, who) {
+  const div = document.createElement('div');
+  div.className = 'message ' + who;
+  div.textContent = text;
+  const msgs = document.getElementById('chatMessages');
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function sendQuick(text) {
+  document.getElementById('chatInput').value = text;
+  document.getElementById('sendChatBtn').click();
+}
+
+document.getElementById('chatButton').addEventListener('click', () => {
+  const cw = document.getElementById('chatWindow');
+  cw.style.display = cw.style.display === 'flex' ? 'none' : 'flex';
+});
+document.getElementById('closeChat').addEventListener('click', () => {
+  document.getElementById('chatWindow').style.display = 'none';
+});
+document.getElementById('sendChatBtn').addEventListener('click', () => {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+  addMsg(msg, 'user');
+  input.value = '';
+  setTimeout(() => addMsg(getBotReply(msg), 'bot'), 350);
+});
+document.getElementById('chatInput').addEventListener('keypress', e => {
+  if (e.key === 'Enter') document.getElementById('sendChatBtn').click();
+});
+
+// =============================================
+// ✅ MISC FUNCTIONALITY
+// =============================================
+(function() {
+  // Fade-in
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.15 });
+  document.querySelectorAll('.fade-section').forEach(s => obs.observe(s));
+
+  // Mobile menu
+  const mm = document.getElementById('mobile-menu'), nm = document.getElementById('nav-menu');
+  mm.addEventListener('click', () => nm.classList.toggle('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => nm.classList.remove('active')));
+
+  // Carousel
+  const track = document.getElementById('carouselTrack');
+  document.getElementById('prevBtn').addEventListener('click', () => { const c = track.querySelector('.project-card'); if(c) track.scrollBy({left:-(c.offsetWidth+32),behavior:'smooth'}); });
+  document.getElementById('nextBtn').addEventListener('click', () => { const c = track.querySelector('.project-card'); if(c) track.scrollBy({left:c.offsetWidth+32,behavior:'smooth'}); });
+
+  // Active nav
+  const navAs = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    document.querySelectorAll('section[id]').forEach(s => { if(pageYOffset >= s.offsetTop - 120) cur = s.id; });
+    navAs.forEach(a => { a.classList.remove('active'); if(a.getAttribute('href')==='#'+cur) a.classList.add('active'); });
+  });
+
+  // FAQ
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const ans = q.nextElementSibling, isOpen = ans.classList.contains('show');
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('show'));
+      document.querySelectorAll('.faq-question').forEach(x => x.classList.remove('active'));
+      if (!isOpen) { ans.classList.add('show'); q.classList.add('active'); }
     });
-    const navLinks = document.querySelectorAll('.nav-links a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-      });
+  });
+
+  // Payment modal
+  const pm = document.getElementById('paymentModal');
+  document.querySelectorAll('.select-plan').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const plan = btn.dataset.plan, price = btn.dataset.price;
+      document.getElementById('popupPlan').textContent = plan;
+      document.getElementById('popupAmount').textContent = '$' + price;
+      document.getElementById('paymentWALink').href = 'https://wa.me/923458740419?text=' + encodeURIComponent('Payment bheja for ' + plan + ' plan ($' + price + '). Please verify.');
+      pm.style.display = 'flex';
     });
+  });
+  document.getElementById('closePaymentModal').addEventListener('click', () => pm.style.display = 'none');
+  pm.addEventListener('click', e => { if(e.target===pm) pm.style.display='none'; });
 
-    // ---------- 3. CAROUSEL (MANUAL ONLY) ----------
-    const track = document.getElementById('carouselTrack');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-
-    function scrollCarousel(direction) {
-      const card = track.querySelector('.project-card');
-      if (!card) return;
-      const cardWidth = card.offsetWidth + parseInt(getComputedStyle(card).marginRight) * 2;
-      const scrollAmount = direction === 'next' ? cardWidth : -cardWidth;
-      track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-
-    if (prevBtn && nextBtn) {
-      prevBtn.addEventListener('click', () => scrollCarousel('prev'));
-      nextBtn.addEventListener('click', () => scrollCarousel('next'));
-    }
-
-    // ---------- 4. ACTIVE NAV HIGHLIGHT ----------
-    const sections = document.querySelectorAll('section[id]');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-          current = section.getAttribute('id');
-        }
-      });
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
-      });
-    });
-
-    // ---------- 5. PROJECT MODAL ----------
-    const projectModal = document.getElementById('projectModal');
-    const closeProjectModal = document.getElementById('closeProjectModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDesc = document.getElementById('modalDesc');
-    const modalVideo = document.getElementById('modalVideo');
-    const modalScreenshots = document.getElementById('modalScreenshots');
-    const lightbox = document.getElementById('imageLightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const closeLightbox = document.getElementById('closeLightbox');
-
-    function openProjectModal(projectCard) {
-      const title = projectCard.querySelector('.project-title').innerText;
-      const desc = projectCard.querySelector('.project-desc').innerText;
-      const videoSrc = projectCard.querySelector('.video-placeholder').getAttribute('data-video');
-      const screenshotImgs = projectCard.querySelectorAll('.screenshot img');
-      
-      modalTitle.innerText = title;
-      modalDesc.innerText = desc;
-      modalVideo.src = videoSrc;
-      
-      modalScreenshots.innerHTML = '';
-      screenshotImgs.forEach(img => {
-        const fullSrc = img.getAttribute('data-full') || img.src;
-        const newImg = document.createElement('img');
-        newImg.src = fullSrc;
-        newImg.alt = 'screenshot';
-        newImg.addEventListener('click', () => {
-          openLightbox(fullSrc);
-        });
-        modalScreenshots.appendChild(newImg);
-      });
-
-      projectModal.style.display = 'flex';
-    }
-
-    function openLightbox(src) {
-      lightboxImg.src = src;
-      lightbox.style.display = 'flex';
-    }
-
-    closeProjectModal.addEventListener('click', () => {
-      projectModal.style.display = 'none';
-      modalVideo.pause();
-      modalVideo.src = '';
-    });
-    closeLightbox.addEventListener('click', () => {
-      lightbox.style.display = 'none';
-      lightboxImg.src = '';
-    });
-
-    projectModal.addEventListener('click', (e) => {
-      if (e.target === projectModal) {
-        projectModal.style.display = 'none';
-        modalVideo.pause();
-        modalVideo.src = '';
-      }
-    });
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        lightbox.style.display = 'none';
-        lightboxImg.src = '';
-      }
-    });
-
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
-      card.addEventListener('click', (e) => {
-        if (e.target.closest('.project-link') || e.target.closest('.screenshot img')) {
-          return;
-        }
-        openProjectModal(card);
-      });
-
-      const viewLink = card.querySelector('.project-link');
-      viewLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        openProjectModal(card);
-      });
-
-      const videoPlaceholder = card.querySelector('.video-placeholder');
-      videoPlaceholder.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openProjectModal(card);
-        setTimeout(() => { modalVideo.play(); }, 300);
-      });
-
-      const screenshots = card.querySelectorAll('.screenshot img');
-      screenshots.forEach(img => {
-        img.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const fullSrc = img.getAttribute('data-full') || img.src;
-          openLightbox(fullSrc);
-        });
-      });
-    });
-
-    const cvImage = document.querySelector('.cv-image img');
-    if (cvImage) {
-      cvImage.addEventListener('click', () => {
-        openLightbox(cvImage.src);
-      });
-    }
-
-    // ---------- 6. FAQ ACCORDION ----------
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    faqQuestions.forEach(question => {
-      question.addEventListener('click', () => {
-        const answer = question.nextElementSibling;
-        const icon = question.querySelector('i');
-        answer.classList.toggle('show');
-        question.classList.toggle('active');
-        // close others (optional)
-        faqQuestions.forEach(q => {
-          if (q !== question) {
-            q.classList.remove('active');
-            q.nextElementSibling.classList.remove('show');
-          }
-        });
-      });
-    });
-
-    // ---------- 7. SIMPLE PAYMENT POPUP ----------
-    const paymentModal = document.getElementById('paymentModal');
-    const closePaymentModal = document.getElementById('closePaymentModal');
-    const popupPlan = document.getElementById('popupPlan');
-    const popupAmount = document.getElementById('popupAmount');
-    const paymentWALink = document.getElementById('paymentWALink');
-
-    const selectPlanButtons = document.querySelectorAll('.select-plan');
-    selectPlanButtons.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const plan = btn.getAttribute('data-plan');
-        const price = btn.getAttribute('data-price');
-        popupPlan.innerText = plan;
-        popupAmount.innerText = '$' + price;
-        // Update WhatsApp link with pre-filled message
-        paymentWALink.href = 'https://wa.me/923458740419?text=I%20have%20sent%20payment%20for%20' + encodeURIComponent(plan + ' plan ($' + price + ')') + '.%20Please%20verify.';
-        paymentModal.style.display = 'flex';
-      });
-    });
-
-    // Custom plan button (already handled by sendCustomPlan, but we also want to open payment modal)
-    const customBtn = document.querySelector('#customPlan .btn');
-    if (customBtn) {
-      customBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        // For custom, we use the total calculated
-        let total = document.getElementById('customTotal').innerText;
-        popupPlan.innerText = 'Custom';
-        popupAmount.innerText = total;
-        paymentWALink.href = 'https://wa.me/923458740419?text=I%20have%20sent%20payment%20for%20custom%20plan%20(' + encodeURIComponent(total) + ').%20Please%20verify.';
-        paymentModal.style.display = 'flex';
-      });
-    }
-
-    closePaymentModal.addEventListener('click', () => {
-      paymentModal.style.display = 'none';
-    });
-
-    paymentModal.addEventListener('click', (e) => {
-      if (e.target === paymentModal) {
-        paymentModal.style.display = 'none';
-      }
-    });
-
-    // Close on ESC
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        if (paymentModal.style.display === 'flex') paymentModal.style.display = 'none';
-        if (projectModal.style.display === 'flex') {
-          projectModal.style.display = 'none';
-          modalVideo.pause();
-          modalVideo.src = '';
-        }
-        if (lightbox.style.display === 'flex') {
-          lightbox.style.display = 'none';
-          lightboxImg.src = '';
-        }
-      }
-    });
-  })();
-
-  // ---------- CUSTOM PLAN PRICE CALCULATOR ----------
-  function updateCustomTotal() {
-    let total = 0;
-    if (document.getElementById('opt1').checked) total += 20;
-    if (document.getElementById('opt2').checked) total += 50;
-    if (document.getElementById('opt3').checked) total += 10;
-    if (document.getElementById('opt4').checked) total += 10;
-    if (document.getElementById('opt5').checked) total += 30;
-    if (document.getElementById('opt6').checked) total += 25;
-    document.getElementById('customTotal').innerText = '$' + total;
+  // Trial modal
+  const tm = document.getElementById('trialModal');
+  document.getElementById('trialLink').addEventListener('click', e => { e.preventDefault(); tm.style.display='flex'; });
+  document.getElementById('closeTrialModal').addEventListener('click', () => { tm.style.display='none'; resetTrial(); });
+  tm.addEventListener('click', e => { if(e.target===tm) { tm.style.display='none'; resetTrial(); } });
+  function resetTrial() {
+    document.getElementById('trialForm').style.display='block';
+    document.getElementById('trialThankyou').style.display='none';
+    ['trialName','trialEmail','trialPhone','trialDesc'].forEach(id => document.getElementById(id).value='');
   }
 
-  function sendCustomPlan() {
-    // Build message with selected options
-    let selected = [];
-    if (document.getElementById('opt1').checked) selected.push('Logo Design');
-    if (document.getElementById('opt2').checked) selected.push('Complete Brand Identity');
-    if (document.getElementById('opt3').checked) selected.push('Social Media Post');
-    if (document.getElementById('opt4').checked) selected.push('UI/UX Design');
-    if (document.getElementById('opt5').checked) selected.push('Web/App Development');
-    if (document.getElementById('opt6').checked) selected.push('Priority Consultation');
-    let total = document.getElementById('customTotal').innerText;
-    let message = "Hi Saad, I'm interested in a custom plan with: " + selected.join(', ') + ". Total estimated: " + total + ". Can we discuss?";
-    window.open('https://wa.me/923458740419?text=' + encodeURIComponent(message), '_blank');
+  // Project modal & lightbox
+  const projModal = document.getElementById('projectModal');
+  const mv = document.getElementById('modalVideo');
+  const lb = document.getElementById('imageLightbox');
+  const lbImg = document.getElementById('lightboxImg');
+
+  function openLB(src) { lbImg.src=src; lb.style.display='flex'; }
+  function openProj(card) {
+    document.getElementById('modalTitle').textContent = card.querySelector('.project-title').textContent;
+    document.getElementById('modalDesc').textContent = card.querySelector('.project-desc').textContent;
+    mv.src = card.querySelector('.video-placeholder').dataset.video;
+    const ms = document.getElementById('modalScreenshots'); ms.innerHTML='';
+    card.querySelectorAll('.screenshot img').forEach(img => {
+      const src = img.dataset.full||img.src;
+      const el = document.createElement('img'); el.src=src; el.alt='ss';
+      el.addEventListener('click', () => openLB(src));
+      ms.appendChild(el);
+    });
+    projModal.style.display='flex';
   }
+
+  document.getElementById('closeProjectModal').addEventListener('click', () => { projModal.style.display='none'; mv.pause(); mv.src=''; });
+  document.getElementById('closeLightbox').addEventListener('click', () => { lb.style.display='none'; });
+  projModal.addEventListener('click', e => { if(e.target===projModal) { projModal.style.display='none'; mv.pause(); mv.src=''; } });
+  lb.addEventListener('click', e => { if(e.target===lb) lb.style.display='none'; });
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', e => { if(!e.target.closest('.screenshot img')) openProj(card); });
+    card.querySelector('.project-link').addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); openProj(card); });
+    card.querySelector('.video-placeholder').addEventListener('click', e => { e.stopPropagation(); openProj(card); setTimeout(()=>mv.play(),300); });
+    card.querySelectorAll('.screenshot img').forEach(img => {
+      img.addEventListener('click', e => { e.stopPropagation(); openLB(img.dataset.full||img.src); });
+    });
+  });
+
+  const cvImg = document.querySelector('.cv-image img');
+  if(cvImg) cvImg.addEventListener('click', () => openLB(cvImg.src));
+
+  // ESC key
+  window.addEventListener('keydown', e => {
+    if(e.key!=='Escape') return;
+    pm.style.display='none';
+    if(projModal.style.display==='flex') { projModal.style.display='none'; mv.pause(); mv.src=''; }
+    lb.style.display='none';
+    tm.style.display='none';
+  });
+})();
+
+// Custom plan calculator
+function updateCustomTotal() {
+  const vals = {opt1:20,opt2:50,opt3:10,opt4:10,opt5:30,opt6:25};
+  const total = Object.entries(vals).reduce((sum,[id,v]) => document.getElementById(id).checked ? sum+v : sum, 0);
+  document.getElementById('customTotal').textContent = '$' + total;
+}
+function sendCustomPlan() {
+  const items = {opt1:'Logo Design',opt2:'Complete Brand Identity',opt3:'Social Media Post',opt4:'UI/UX Design',opt5:'Web/App Development',opt6:'Priority Consultation'};
+  const selected = Object.entries(items).filter(([id])=>document.getElementById(id).checked).map(([,n])=>n);
+  const total = document.getElementById('customTotal').textContent;
+  const msg = "Hi Saad, I'm interested in a custom plan: " + (selected.length ? selected.join(', ') : 'to be discussed') + ". Estimated: " + total + ". Can we discuss?";
+  window.open('https://wa.me/923458740419?text='+encodeURIComponent(msg),'_blank');
+}
 </script>
-
-<!-- 
-  🔁 REPLACE INSTRUCTIONS:
-  - Hero image: src="saad 1.jpeg" → your actual photo.
-  - Portfolio: 
-      * Thumbnail images: ukthumb.png, hthumb.png, zthumb.png, post.png → replace with your own.
-      * Screenshots: login.png, sale.png, report.png, hstore.png, hweb.png, hpro.png, zelva.png, schedule.png, doctors.png, ad.png, ad2.png, ad3.png → replace with your actual files.
-      * Videos: uk.mp4, h1.mp4, z.mp4, ad.mp4 → replace with your video files.
-  - CV: src="cv 4.png" → your CV image.
-  - Social links: replace # with your URLs.
-  - Email & WhatsApp: update if needed.
-  - Payment popup: account numbers already set to your WhatsApp number.
--->
 </body>
 </html>
